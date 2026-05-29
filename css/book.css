@@ -1,0 +1,788 @@
+/* 3D Book Open & Page Flip Animation Stylesheet */
+
+/* Overlay container behind the opened book */
+.book-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--bg-dark-overlay);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  perspective: 2000px; /* 立体的な本を際立たせる視界の深さ */
+}
+
+.book-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Close Button */
+.close-book-btn {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  background: none;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  font-family: var(--font-serif-jp);
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: var(--transition-fast);
+  letter-spacing: 1px;
+}
+
+.close-book-btn:hover {
+  background-color: var(--accent-color);
+  color: var(--primary-dark);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+/* 3D Book Container */
+.book-3d-container {
+  position: relative;
+  width: 760px;
+  height: 480px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  /* 閉じた本（右半分に配置）が画面中央に来るよう、左に190px（本の幅の1/4）シフトしておく */
+  transform: rotateX(15deg) rotateY(0deg) translateX(-190px) scale(0.85);
+}
+
+/* Modal Open State Transform */
+.book-modal-overlay.active .book-3d-container {
+  /* 開いた時は見開き全体が画面中央に広がるよう、スライド位置を中央（0）に戻す */
+  transform: rotateX(10deg) rotateY(0deg) translateX(0px) scale(1);
+}
+
+/* 3D Book Structure */
+.book-3d {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Pages & Cover Shared properties */
+.book-page-side {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  box-shadow: var(--shadow-book);
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  backface-visibility: hidden;
+}
+
+/* LEFT PAGE / FRONT COVER GROUP */
+.book-cover-front {
+  left: 50%; /* 閉じた状態では右側に配置されている */
+  background-color: var(--spine-blue); /* 動的にJSで上書きされる */
+  border-radius: 0 8px 8px 0;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transform: rotateY(0deg); /* 閉じた状態 */
+}
+
+/* Front Cover Leather Texture and Embossing */
+.cover-inner {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid rgba(0, 0, 0, 0.35); /* 背表紙の折り目 */
+  color: #fff;
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.15), transparent 15%),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
+  backface-visibility: hidden; /* 文字が裏返ったときに透けないようにする */
+  overflow: hidden; /* 文字が物理的に外へはみ出さないようにガード */
+}
+
+/* Cover Frame */
+.cover-inner::before {
+  content: '';
+  position: absolute;
+  top: 15px; left: 15px; right: 15px; bottom: 15px;
+  border: 1px solid var(--accent-color);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.cover-title {
+  font-family: var(--font-serif-jp);
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-top: 30px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+}
+
+.cover-author {
+  font-family: var(--font-serif-jp);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+/* Right Page Interior */
+.page-inside-right {
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  height: 96%;
+  top: 2%;
+  background: var(--bg-parchment);
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.05) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.08) 100%),
+    linear-gradient(var(--bg-parchment) 0%, var(--bg-parchment-dark) 100%);
+  padding: 40px;
+  box-sizing: border-box;
+  color: var(--text-dark);
+  font-family: var(--font-serif-jp);
+  border-radius: 0 4px 4px 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+  z-index: 4;
+  overflow: hidden; /* 文字が物理的に外へはみ出さないようにガード */
+}
+
+/* Elegant Page Content Styles */
+.page-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Classic Borders inside pages */
+.book-cover-backside .page-content {
+  border: 1px solid rgba(43, 24, 16, 0.15);
+  padding: 25px;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-title-inside {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.book-author-inside {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.inside-ornament {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  margin: 1.5rem 0;
+}
+
+.book-chapter-title {
+  font-size: 1.15rem;
+  color: var(--primary-color);
+  border-bottom: 1px solid rgba(43, 24, 16, 0.15);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.book-text-body {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-dark);
+  text-align: justify;
+  white-space: pre-line; /* 改行を有効化 */
+  overflow-y: auto;
+  max-height: 270px;
+  padding-right: 8px;
+}
+
+/* Custom Scrollbar for inside book text */
+.book-text-body::-webkit-scrollbar {
+  width: 4px;
+}
+.book-text-body::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.page-number {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* STATE: ACTIVE (BOOK IS OPEN) */
+.book-modal-overlay.active .book-cover-front {
+  transform: rotateY(-180deg);
+  z-index: 2; /* めくれた後は下側のレイヤーに送る */
+}
+
+/* Flat Backside cover (Behind the front cover) - DIRECTLY ACTS AS THE LEFT PARCHMENT PAGE! */
+.book-cover-backside {
+  position: absolute;
+  top: 2%; left: 0; width: 100%; height: 96%; /* 表紙より少し小さくする */
+  background: var(--bg-parchment);
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.05) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.08) 100%),
+    linear-gradient(var(--bg-parchment) 0%, var(--bg-parchment-dark) 100%);
+  transform: rotateY(180deg); /* 背中合わせ */
+  backface-visibility: hidden;
+  border-radius: 4px 0 0 4px;
+  box-shadow: inset -5px 0 10px rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 40px;
+  box-sizing: border-box;
+  color: var(--text-dark);
+  font-family: var(--font-serif-jp);
+  overflow: hidden;
+}
+
+/* Responsive adjustment for Mobile screens */
+@media (max-width: 800px) {
+  .book-3d-container {
+    width: 90%;
+    max-width: 360px;
+    height: 520px;
+    /* モバイルでは最初から本が中央に配置されるため、左シフトを解除する */
+    transform: rotateX(15deg) rotateY(0deg) translateX(0px) scale(0.85);
+  }
+  
+  .book-modal-overlay.active .book-3d-container {
+    transform: rotateX(5deg) translateX(0px) scale(1);
+  }
+  
+  .book-page-side, .book-inside-page {
+    width: 100%; /* スマホでは見開きではなく単一ページ重ねに変更 */
+    left: 0 !important;
+  }
+  
+  .page-inside-right {
+    opacity: 0; /* 右ページは非表示にするか、下にスタック */
+    pointer-events: none;
+    z-index: 1 !important;
+  }
+
+  /* モバイルでは左ページ（もしくはモーダル）にタイトル・章・本文を1枚で表示 */
+  .book-modal-overlay.active .page-inside-left {
+    width: 100%;
+    z-index: 8;
+  }
+  
+  .page-inside-left .page-content {
+    border: none;
+    padding: 0;
+  }
+  
+  .book-text-body {
+    max-height: 320px;
+  }
+  
+  .close-book-btn {
+    top: 15px;
+    right: 15px;
+    padding: 5px 12px;
+  }
+}
+
+/* =========================================================================
+   Inline 3D Books (Desk & Floating Layouts)
+   ========================================================================= */
+
+.inline-book-container {
+  position: relative;
+  width: 600px;
+  height: 380px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.inline-book-container .book-page-side {
+  /* override top position for inline */
+  top: 0;
+}
+
+/* インラインブック用のフォント・余白の自動縮小調整 */
+.inline-book-container .cover-inner,
+.inline-book-container .page-inside-right,
+.inline-book-container .book-cover-backside {
+  padding: 25px; /* 元の40pxから縮小して文字あふれを防止 */
+}
+
+.inline-book-container .book-cover-backside .page-content {
+  padding: 15px;
+}
+
+.inline-book-container .cover-title {
+  font-size: 1.6rem;
+  margin-top: 15px;
+}
+
+.inline-book-container .book-title-inside {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.inline-book-container .book-chapter-title {
+  font-size: 1.0rem;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.5rem;
+}
+
+.inline-book-container .book-text-body {
+  font-size: 0.85rem;
+  max-height: 200px; /* はみ出さないように高さを制限 */
+}
+
+/* Desk Layout specific */
+.desk-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  perspective: 2000px;
+}
+
+.desk-book-inline {
+  /* 平置きのパース: 奥に倒し、少し回転、右に少し寄せることで見開きが中央になるように */
+  transform: rotateX(40deg) rotateZ(-15deg) rotateY(0deg) scale(0.9) translateX(-100px);
+}
+
+.desk-book-inline.proximity-open {
+  /* 近づいた時: 少し浮き上がり、パースを弱めて読みやすくする */
+  transform: rotateX(20deg) rotateZ(-5deg) rotateY(0deg) scale(1.0) translateY(-20px) translateX(0px);
+}
+
+/* デスクレイアウトで開くとき */
+.desk-book-inline.proximity-open .inline-cover-front {
+  transform: rotateY(-175deg); /* ほぼ完全に開く */
+  z-index: 2;
+}
+
+/* Floating Layout specific */
+.floating-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+  perspective: 2500px;
+}
+
+.floating-book-inline {
+  transform: rotateX(10deg) scale(0.9) translateX(-100px);
+  animation: float-book 6s ease-in-out infinite;
+}
+
+/* Dynamic open uses inline style.transform, but we set a short transition for smoothness */
+.floating-book-inline .inline-cover-front {
+  transition: transform 0.15s ease-out;
+}
+
+/* Make sure the floating book is centered when opened */
+.floating-book-inline.dynamic-open-active {
+  transform: rotateX(5deg) scale(1.0) translateX(0px);
+}
+
+@keyframes float-book {
+  0%, 100% { transform: rotateX(10deg) scale(0.9) translateY(0px) translateX(-100px); }
+  50% { transform: rotateX(15deg) scale(0.92) translateY(-25px) translateX(-100px); }
+}
+
+/* Mobile Adjustments for Inline Books */
+@media (max-width: 800px) {
+  .inline-book-container {
+    width: 90%;
+    max-width: 360px;
+    height: 480px;
+  }
+  .desk-book-inline {
+    transform: rotateX(20deg) scale(0.8) translateX(0);
+  }
+  .desk-book-inline.proximity-open {
+    transform: rotateX(5deg) scale(0.9) translateX(0);
+  }
+  .floating-book-inline,
+  @keyframes float-book {
+    /* モバイルではtranslateXを解除 */
+    0%, 100% { transform: rotateX(10deg) scale(0.8) translateY(0px) translateX(0); }
+    50% { transform: rotateX(15deg) scale(0.85) translateY(-15px) translateX(0); }
+  }
+}
+
+/* =========================================================================
+   5. 3D Carousel (円陣カルーセル)
+   ========================================================================= */
+.carousel-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 2500px;
+  height: 600px;
+  padding-top: 250px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 1px; height: 1px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.carousel-book-inline {
+  position: absolute;
+  top: -190px;
+  left: -300px;
+  /* js sets base transform (rotateY and translateZ) */
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.carousel-book-inline .inline-cover-front {
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.carousel-controls {
+  position: relative;
+  margin-top: 150px;
+  display: flex;
+  gap: 20px;
+  z-index: 20;
+}
+.carousel-btn {
+  background: var(--bg-parchment-dark);
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.carousel-btn:hover {
+  background: var(--accent-color);
+  color: var(--primary-dark);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* =========================================================================
+   6. Scroll Altar (スクロール祭壇)
+   ========================================================================= */
+.altar-sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  perspective: 2500px;
+}
+
+.altar-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.altar-book-inline {
+  /* JSから動的に transform が適用されるため transition なし */
+}
+
+/* =========================================================================
+   7. The Stack (積読タワー)
+   ========================================================================= */
+.stack-wrapper {
+  position: relative;
+  height: 600px;
+  perspective: 2000px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 50px;
+}
+
+.stack-book-inline {
+  position: absolute;
+  bottom: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.stack-book-inline .inline-cover-front {
+  transition: transform 0.5s ease;
+}
+
+.stack-book-inline.stack-active {
+  z-index: 50 !important;
+}
+
+.stack-book-inline.stack-active .inline-cover-front {
+  transform: rotateY(-175deg);
+  z-index: 2;
+}
+
+/* =========================================================================
+   8. The Infinite Spiral (無限の螺旋書庫)
+   ========================================================================= */
+.spiral-sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  perspective: 2500px;
+}
+
+.spiral-wrapper {
+  position: relative;
+  width: 1px; height: 1px;
+  transform-style: preserve-3d;
+  /* JS will update transform */
+}
+
+.spiral-book-inline {
+  position: absolute;
+  top: -190px;
+  left: -300px;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out; /* スクロールの滑らかさ用 */
+}
+
+.spiral-book-inline .inline-cover-front {
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* =========================================================================
+   9. Museum Spotlight (美術館展示台)
+   ========================================================================= */
+.museum-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 2500px;
+  height: 600px;
+  padding-top: 250px;
+  position: relative;
+}
+
+.museum-spotlight {
+  position: absolute;
+  top: 300px;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 50%);
+  border-radius: 50%;
+  transform: rotateX(75deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.museum-container {
+  position: relative;
+  width: 1px; height: 1px;
+  transform-style: preserve-3d;
+  z-index: 5;
+}
+
+.museum-book-inline {
+  position: absolute;
+  top: -190px;
+  left: -300px;
+  transform-style: preserve-3d;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  transform: scale(0.8) translateY(50px);
+}
+
+.museum-book-inline.museum-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1) translateY(0px);
+}
+
+/* .book-3d (コンテナの中身) をJSで自転させる */
+
+/* =========================================================================
+   10. Ripple Grid (波紋グリッド)
+   ========================================================================= */
+.ripple-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  perspective: 2500px;
+}
+
+.ripple-item-wrapper {
+  width: 150px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* JSで波紋の押し出し(translate)が適用される */
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ripple-item-wrapper .inline-book-container {
+  transform: scale(0.25);
+  transform-origin: center center;
+  pointer-events: none;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.ripple-item-wrapper.ripple-hovered {
+  z-index: 100;
+}
+
+.ripple-item-wrapper.ripple-hovered .inline-book-container {
+  transform: scale(0.9) translateZ(150px);
+  pointer-events: auto;
+}
+
+.ripple-item-wrapper.ripple-hovered .inline-cover-front {
+  transform: rotateY(-175deg);
+}
+
+/* =========================================================================
+   11. Planetary Orbit (天体軌道の書庫)
+   ========================================================================= */
+.orbit-wrapper {
+  position: relative;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2500px;
+}
+
+.orbit-center {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,200,100,0.8) 0%, rgba(255,100,50,0) 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 50px rgba(255,150,50,0.5);
+  animation: pulse-sun 4s infinite alternate;
+}
+
+@keyframes pulse-sun {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+.orbit-book-container {
+  position: absolute;
+  width: 1px; height: 1px;
+  transform-style: preserve-3d;
+}
+
+.orbit-book-inline {
+  position: absolute;
+  top: -190px;
+  left: -300px;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.orbit-book-inline .inline-cover-front {
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* =========================================================================
+   12. Endless Conveyor (無限コンベア)
+   ========================================================================= */
+.conveyor-wrapper {
+  position: relative;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  perspective: 2500px;
+  padding-left: 50px; /* 見切れ防止 */
+}
+
+.conveyor-track {
+  display: flex;
+  gap: 100px;
+  width: max-content;
+  transform-style: preserve-3d;
+}
+
+.conveyor-book-inline {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: scale(0.5) rotateX(15deg);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.conveyor-book-inline.conveyor-hovered {
+  transform: scale(1) rotateX(5deg) translateZ(100px);
+  z-index: 50;
+}
+
+.conveyor-book-inline.conveyor-hovered .inline-cover-front {
+  transform: rotateY(-175deg);
+}
+
+/* =========================================================================
+   13. Constellation (星図ネットワーク)
+   ========================================================================= */
+.constellation-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2500px;
+}
+
+.constellation-book-inline {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: scale(0.35) rotateX(15deg);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.3s ease;
+  z-index: 10;
+}
+
+.constellation-book-inline.constellation-hovered {
+  transform: scale(1.0) rotateX(5deg) translateZ(200px);
+  z-index: 50;
+  filter: drop-shadow(0 0 20px rgba(160, 192, 240, 0.8));
+}
+
+.constellation-book-inline.constellation-hovered .inline-cover-front {
+  transform: rotateY(-175deg);
+}
+

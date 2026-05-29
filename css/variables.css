@@ -1,0 +1,90 @@
+/* Design System Variables - Library Portal Base Template */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  /* Color Palette - Premium Classic Library */
+  --primary-color: #2b1810;       /* Mahogany wood */
+  --primary-light: #442a20;       /* Lighter mahogany */
+  --primary-dark: #1a0d0a;        /* Shadowed wood */
+  --accent-color: #d4af37;        /* Antique gold */
+  --accent-hover: #b89324;       /* Darker gold for interaction */
+  --accent-glow: rgba(212, 175, 55, 0.4);
+  
+  /* Backgrounds */
+  --bg-parchment: #fcfaf2;        /* Warm paper/parchment */
+  --bg-parchment-dark: #f5eedc;   /* Shadowed parchment */
+  --bg-shelf-wood: #3a2217;       /* Shelf wood color */
+  --bg-dark-overlay: rgba(15, 10, 8, 0.85); /* Overlay behind opened book */
+  
+  /* Text Colors */
+  --text-dark: #201c1a;           /* Near black for high readability */
+  --text-muted: #5e524d;          /* Muted brown-gray */
+  --text-light: #fcfaf2;          /* Parchment text for dark backgrounds */
+  
+  /* Spine Book Palette (Variations for Shelf Books) */
+  --spine-red: #7c2222;
+  --spine-blue: #224263;
+  --spine-green: #1f4a39;
+  --spine-gold: #b38b25;
+  --spine-purple: #4a274c;
+  --spine-brown: #573e34;
+  
+  /* Fonts */
+  --font-serif-jp: 'Noto Serif JP', serif;
+  --font-serif-en: 'Playfair Display', serif;
+  --font-display: 'Cinzel', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Typography Scale */
+  --h1-size: 2.5rem;
+  --h2-size: 1.85rem;
+  --h3-size: 1.35rem;
+  --body-size: 1rem;
+  --small-size: 0.85rem;
+
+  /* Transitions & Animation Timings */
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --transition-fast: all 0.2s ease-out;
+  --transition-flip: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  /* Shadows */
+  --shadow-wood: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  --shadow-book: 0 15px 35px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.2);
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+  
+  /* Grid & Dimensions */
+  --container-width: 1200px;
+  --border-radius: 4px;
+}
+
+/* Base resets & scrollbar customization */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-serif-jp);
+  background-color: var(--bg-parchment);
+  color: var(--text-dark);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Elegant scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-parchment-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border: 2px solid var(--bg-parchment-dark);
+  border-radius: var(--border-radius);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-color);
+}

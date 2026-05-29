@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="本棚から本を引き出し、美しい3D演出で開くことができる、図書館向けホームページの汎用ベーステンプレート。">
+  <title class="lib-title">架空の中央図書館</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/shelf.css">
+  <link rel="stylesheet" href="css/book.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title">CENTRAL LIBRARY</h1>
+      <span class="lib-subtitle">夢見ヶ丘中央図書館 ポータル</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#bookshelf-section" id="nav-shelf">本棚</a></li>
+        <li><a href="#news-section" id="nav-news">お知らせ</a></li>
+        <li><a href="#guide-section" id="nav-guide">ご利用案内</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home-hero">
+    <div class="hero-content">
+      <div class="ornament">
+        <span class="ornament-symbol">◆</span>
+      </div>
+      <h2 id="hero-title">本棚を巡り、物語と出会う。</h2>
+      <p id="hero-desc">静寂に包まれた書庫の中で、あなただけの１冊を見つけてください。本棚から本を引き出すと、新しい世界のページが開かれます。</p>
+      
+      <!-- Open Status Indicator -->
+      <div class="ornament">
+        <span class="ornament-symbol">◆</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📕 Section 1: Bookshelf (本棚・背表紙のホバー演出) -->
+  <section id="bookshelf-section" class="catalog-section" style="border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 6rem;">
+    <div class="section-title">
+      <h2>1. 図書室の本棚（背表紙ホバー演出）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        本棚から本を引き出す際の、最も本棚らしく美しい3Dプルインタラクションです。ホバーすると手前にスッとせり出して傾きます。
+      </p>
+    </div>
+
+    <div class="bookshelf-wrapper">
+      <div class="bookshelf" id="library-bookshelf">
+        <div class="shelf-row" id="shelf-row-1"></div>
+        <div class="shelf-row" id="shelf-row-2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📖 Section 2: Desk Layout (机置き・シンプル近接オープン) -->
+  <section id="desk-section" class="catalog-section" style="background-color: var(--bg-parchment); border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 6rem; padding-top: 4rem;">
+    <div class="section-title">
+      <h2>2. Desk Layout（机置き・近接オープン）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        机の上に置かれた魔導書。マウスカーソルが近づく（一定距離内に入る）と、フワッと自動的に表紙が開きます。
+      </p>
+    </div>
+    
+    <div class="desk-wrapper" id="desk-wrapper">
+      <!-- JSで動的に机上の本が生成されます -->
+    </div>
+  </section>
+
+  <!-- ✨ Section 3: Floating Showcase (空間浮遊・距離連動ダイナミックオープン) -->
+  <section id="floating-section" class="catalog-section" style="background-color: #1a1a1a; color: #f0f0f0; border-bottom: 1px solid #333; padding-bottom: 6rem; padding-top: 4rem;">
+    <div class="section-title">
+      <h2 style="color: #e0d0b0;">3. Floating Showcase（空間浮遊・距離連動）</h2>
+      <p style="text-align: center; color: #a0a0a0; font-size: 0.9rem; margin-top: -10px;">
+        暗闇に浮かぶ本。カーソルとの距離をリアルタイム計算し、近づくほどジワジワとページが開く魔法のような演出です。
+      </p>
+    </div>
+    
+    <div class="floating-wrapper" id="floating-wrapper">
+      <!-- JSで動的に浮遊する本が生成されます -->
+    </div>
+  </section>
+
+  <!-- 🎠 Section 5: 3D Carousel (円形書庫カルーセル) -->
+  <section id="carousel-section" class="catalog-section" style="background-color: var(--bg-parchment); border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 6rem; padding-top: 4rem; overflow: hidden;">
+    <div class="section-title">
+      <h2>5. 3D Carousel（円陣カルーセル）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        本が円を描いて並ぶリッチなショーケース。矢印ボタンで回転させると、正面に来た本が自動的に開きます。
+      </p>
+    </div>
+    <div class="carousel-wrapper">
+      <div class="carousel-container" id="carousel-container">
+        <!-- JSで動的に配置 -->
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-btn" id="carousel-prev" aria-label="前へ">◀</button>
+        <button class="carousel-btn" id="carousel-next" aria-label="次へ">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📜 Section 6: Scroll Altar (スクロール連動祭壇) -->
+  <section id="scroll-altar-section" class="catalog-section" style="background-color: #0a0a12; color: #fff; padding-top: 0; position: relative;">
+    <!-- スクロール用の高さを確保 (300vh) -->
+    <div class="altar-scroll-space" id="altar-scroll-space" style="height: 300vh;">
+      <div class="altar-sticky-container">
+        <div class="section-title" style="padding-top: 4rem; position: relative; z-index: 10;">
+          <h2 style="color: #d0c0a0;">6. Scroll Altar（スクロール連動）</h2>
+          <p style="text-align: center; color: #888; font-size: 0.9rem; margin-top: -10px;">
+            ゆっくりと下へスクロールしてみてください。あなたの動きに合わせて本が迫り来て開きます。
+          </p>
+        </div>
+        <div class="altar-wrapper" id="altar-wrapper">
+          <!-- JSで動的に配置 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📚 Section 7: The Stack (積読タワー) -->
+  <section id="stack-section" class="catalog-section" style="background-color: var(--bg-parchment-dark); border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 10rem; padding-top: 4rem;">
+    <div class="section-title">
+      <h2>7. The Stack（積読タワー）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        無造作に積み上げられた魔導書。読みたい本にカーソルを合わせると、上に積まれた本が退いて引き出されます。
+      </p>
+    </div>
+    <div class="stack-wrapper" id="stack-wrapper">
+      <!-- JSで動的に積まれます -->
+    </div>
+  </section>
+
+  <!-- 🌀 Section 8: The Infinite Spiral (無限の螺旋書庫) -->
+  <section id="spiral-section" class="catalog-section" style="background-color: #030305; color: #fff; padding-top: 0; position: relative;">
+    <div class="spiral-scroll-space" id="spiral-scroll-space" style="height: 400vh;">
+      <div class="spiral-sticky-container">
+        <div class="section-title" style="padding-top: 4rem; position: absolute; z-index: 10; width: 100%;">
+          <h2 style="color: #c0d0f0; text-shadow: 0 0 10px rgba(192,208,240,0.5);">8. Infinite Spiral（螺旋書庫）</h2>
+          <p style="text-align: center; color: #889; font-size: 0.9rem; margin-top: -10px;">
+            スクロールで螺旋の中心を昇降します。目の前に来た本が自動で開きます。
+          </p>
+        </div>
+        <div class="spiral-wrapper" id="spiral-wrapper">
+          <!-- JSで動的に配置 -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🏛️ Section 9: Museum Spotlight (美術館の展示台) -->
+  <section id="museum-section" class="catalog-section" style="background-color: #080808; color: #d0c0a0; padding-bottom: 6rem; padding-top: 4rem; position: relative;">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2>9. Museum Spotlight（展示台）</h2>
+      <p style="text-align: center; color: #888; font-size: 0.9rem; margin-top: -10px;">
+        スポットライトに照らされて自転する本。近づくと回転が止まり優雅に開きます。
+      </p>
+    </div>
+    <div class="museum-wrapper">
+      <div class="museum-spotlight"></div>
+      <div class="museum-container" id="museum-container">
+        <!-- JSで動的に配置 -->
+      </div>
+      <div class="carousel-controls" style="margin-top: 50px; z-index: 10;">
+        <button class="carousel-btn" id="museum-prev" aria-label="前へ" style="background:#222; border-color:#888;">◀</button>
+        <button class="carousel-btn" id="museum-next" aria-label="次へ" style="background:#222; border-color:#888;">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🌊 Section 10: Ripple Grid (波紋の書架グリッド) -->
+  <section id="ripple-section" class="catalog-section" style="background-color: var(--bg-parchment); border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 8rem; padding-top: 4rem;">
+    <div class="section-title">
+      <h2>10. Ripple Grid（波紋グリッド）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        壁一面の書架。カーソルを合わせると、周囲の本が波紋のように道を譲ります。
+      </p>
+    </div>
+    <div class="ripple-wrapper" id="ripple-wrapper">
+      <!-- JSで多数配置 -->
+    </div>
+  </section>
+
+  <!-- 🪐 Section 11: Planetary Orbit (天体軌道の書庫) -->
+  <section id="orbit-section" class="catalog-section" style="background-color: #020204; color: #fff; padding-top: 4rem; padding-bottom: 8rem; position: relative; overflow: hidden;">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="color: #f0e0c0;">11. Planetary Orbit（天体軌道）</h2>
+      <p style="text-align: center; color: #889; font-size: 0.9rem; margin-top: -10px;">
+        惑星のように本が公転します。カーソルを合わせると宇宙の時間が止まります。
+      </p>
+    </div>
+    <div class="orbit-wrapper" id="orbit-wrapper">
+      <div class="orbit-center"></div>
+      <!-- JSで動的に配置 -->
+    </div>
+  </section>
+
+  <!-- 🛤️ Section 12: Endless Conveyor (無限の魔導コンベア) -->
+  <section id="conveyor-section" class="catalog-section" style="background-color: var(--bg-parchment-dark); border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 8rem; padding-top: 4rem; overflow: hidden;">
+    <div class="section-title">
+      <h2>12. Endless Conveyor（魔導コンベア）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        無限に流れ続ける本。カーソルを乗せると流れが減速して止まります。
+      </p>
+    </div>
+    <div class="conveyor-wrapper">
+      <div class="conveyor-track" id="conveyor-track">
+        <!-- JSで動的に配置 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ✨ Section 13: The Constellation (星図のネットワーク) -->
+  <section id="constellation-section" class="catalog-section" style="background-color: #0a0c10; color: #fff; padding-bottom: 8rem; padding-top: 4rem; position: relative;">
+    <canvas id="constellation-canvas" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1; pointer-events: none;"></canvas>
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="color: #a0c0f0;">13. The Constellation（星図ネットワーク）</h2>
+      <p style="text-align: center; color: #778; font-size: 0.9rem; margin-top: -10px;">
+        星図のように結ばれた本。カーソルを合わせると光の線が輝き本が開きます。
+      </p>
+    </div>
+    <div class="constellation-wrapper" id="constellation-wrapper" style="position: relative; z-index: 5; height: 600px;">
+      <!-- JSで動的に配置 -->
+    </div>
+  </section>
+
+  <!-- 🖼️ Section 14: Cover Gallery (表紙ギャラリー・めくり演出) -->
+  <section id="gallery-section" class="catalog-section" style="padding-bottom: 6rem; padding-top: 4rem;">
+    <div class="section-title">
+      <h2>14. Cover Gallery（表紙ギャラリー）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        美麗な表表紙カードが並ぶギャラリー。クリックすると画面中央で本が3Dで滑らかに開いてめくれます。（従来型）
+      </p>
+    </div>
+    
+    <div class="cover-gallery" id="cover-gallery">
+      <!-- JSで正面を向いた本カードが動的に生成されます -->
+    </div>
+  </section>
+
+  <!-- 3D Book Viewer Modal (Hidden by default, triggered by JS) -->
+  <div class="book-modal-overlay" id="book-modal">
+    <button class="close-book-btn" id="close-book-btn" aria-label="閉じる">閉じる ESC</button>
+    
+    <!-- 3D Book Container -->
+    <div class="book-3d-container">
+      <div class="book-3d">
+        
+        <!-- FRONT COVER (Rotates Y from 0 to -180deg) -->
+        <div class="book-page-side book-cover-front" id="modal-cover-front">
+          <div class="cover-inner">
+            <h3 class="cover-title" id="modal-cover-title">本のタイトル</h3>
+            <div class="cover-author" id="modal-cover-author">著者名</div>
+          </div>
+          <!-- 表表紙の裏面（裏面）: これがそのまま「左の内側ページ（羊皮紙）」になる！ -->
+          <div class="book-cover-backside">
+            <div class="page-content">
+              <div style="width: 100%; text-align: center;">
+                <h4 class="book-title-inside" id="modal-inside-title">本のタイトル</h4>
+                <div class="book-author-inside" id="modal-inside-author">著者名</div>
+              </div>
+              <div class="inside-ornament">❦</div>
+              <div class="page-number">L-1</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT INSIDE PAGE (Static on the right, content page) -->
+        <div class="book-inside-page page-inside-right">
+          <div class="page-content">
+            <div>
+              <h5 class="book-chapter-title" id="modal-chapter-title">第一章　導入</h5>
+              <div class="book-text-body" id="modal-text-body">
+                ここには本の紹介文やあらすじ、もしくは本文のプレースホルダーが入ります。
+                他の方がこのテンプレートを自分のサイトに組み込む際は、データファイルを1枚書き換えるだけで
+                本のタイトル・著者・本文を自由にカスタマイズできます。
+              </div>
+            </div>
+            <div class="page-number">R-2</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Announcements Section -->
+  <section id="news-section" style="background-color: var(--bg-parchment-dark); max-width: 100%;">
+    <div style="max-width: var(--container-width); margin: 0 auto;">
+      <div class="section-title">
+        <h2>お知らせ・イベント</h2>
+      </div>
+      <div class="news-container" id="news-list">
+        <!-- JSで動的に反映されます -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage Guide Section -->
+  <section id="guide-section">
+    <div class="section-title">
+      <h2>ご利用案内</h2>
+    </div>
+    
+    <div class="guide-grid">
+      <div class="guide-card" id="guide-card-hours">
+        <div class="guide-icon">⏳</div>
+        <h3>本日の開館時間</h3>
+        <p style="text-align: center; font-weight: 600; font-size: 1.1rem; color: var(--primary-color); margin-bottom: 0.8rem;" id="status-time">09:00 - 20:00</p>
+        <p>開館時間は曜日やイベントによって変更される場合があります。休館日はカレンダーおよびお知らせをご確認ください。</p>
+      </div>
+
+      <div class="guide-card" id="guide-card-borrow">
+        <div class="guide-icon">📖</div>
+        <h3>貸出・返却ルール</h3>
+        <p>本のご利用は、お一人様10冊まで、期間は最長で2週間（14日間）となります。新着図書や一部の貴重資料は期間が異なる場合があります。</p>
+      </div>
+
+      <div class="guide-card" id="guide-card-card">
+        <div class="guide-icon">💳</div>
+        <h3>初めてご利用の方へ</h3>
+        <p>図書カードの作成には、現住所が確認できる身分証明書（運転免許証、健康保険証、学生証など）が必要です。窓口にて申込書をご記入ください。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3 class="lib-title">CENTRAL LIBRARY</h3>
+        <p id="footer-address">住所のプレースホルダー</p>
+        <p id="footer-phone">電話番号のプレースホルダー</p>
+        <p id="footer-email">メールアドレスのプレースホルダー</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>リンク</h4>
+        <ul>
+          <li><a href="#bookshelf-section">図書室の本棚</a></li>
+          <li><a href="#news-section">お知らせ一覧</a></li>
+          <li><a href="#guide-section">初めての方向けガイド</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>開館時間</h4>
+        <p id="footer-hours">開館時間情報がここにロードされます</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; opacity: 0.6;">定休日：毎週月曜日</p>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2026 <span class="lib-title">Central Library</span>. Developed as an interactive template. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/books-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
