@@ -1,0 +1,143 @@
+/* ==========================================================================
+   JUNIOR HIGH SCHOOL THEME STYLES
+   ========================================================================== */
+
+/* Hero Section override */
+.jhs-hero {
+  background: 
+    linear-gradient(rgba(44, 62, 80, 0.7), rgba(41, 128, 185, 0.5)),
+    url('https://images.unsplash.com/photo-1522661067900-ab829854a57f?auto=format&fit=crop&q=80') center/cover;
+  border-bottom: 5px solid #3498db;
+}
+
+/* Locker Room Container */
+.locker-room {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  /* 少し薄暗い空間を演出 */
+  background: radial-gradient(circle at center, #34495e 0%, #2c3e50 100%);
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+  border-radius: 10px;
+}
+
+/* 個別のロッカー */
+.locker {
+  width: 250px;
+  height: 400px;
+  background: #222;
+  position: relative;
+  perspective: 1000px; /* 3D空間の確保 */
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.5);
+}
+
+/* ロッカーの内部（コンテンツ） */
+.locker-inside {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #111;
+  padding: 20px;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ecf0f1;
+}
+
+.locker-content-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #3498db;
+}
+
+.locker-content-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.locker-content-desc {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.9rem;
+  color: #95a5a6;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ロッカーの扉（手前） */
+.locker-door {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+  border: 2px solid #555;
+  transform-origin: left; /* 左端を軸に開閉 */
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: inset 5px 0 10px rgba(255,255,255,0.2), inset -5px 0 10px rgba(0,0,0,0.2);
+}
+
+/* ロッカーのルーバー（通気口） */
+.locker-door::before {
+  content: '';
+  width: 60%;
+  height: 80px;
+  background: 
+    repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 10px,
+      rgba(0,0,0,0.2) 10px,
+      rgba(0,0,0,0.2) 15px
+    );
+  margin-bottom: auto;
+}
+
+/* ロッカーのナンバープレート */
+.locker-number {
+  background: #333;
+  color: #fff;
+  font-family: 'Oswald', sans-serif;
+  padding: 5px 15px;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  border: 1px solid #222;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+  margin-top: 20px;
+}
+
+/* ロッカーの取っ手 */
+.locker-handle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 60px;
+  background: #bdc3c7;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+/* ホバーで少しだけ開く */
+.locker:hover .locker-door {
+  transform: rotateY(-15deg);
+  box-shadow: 20px 10px 20px rgba(0,0,0,0.5);
+}
+
+/* 'open' クラスで完全に開く */
+.locker.open .locker-door {
+  transform: rotateY(-110deg);
+  box-shadow: 30px 10px 30px rgba(0,0,0,0.4);
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - CLASSIC CINEMA</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/cinema.css">
+</head>
+<body class="cinema-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title">CENTRAL LIBRARY</h1>
+      <span class="lib-subtitle">夢見ヶ丘中央図書館 ポータル</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#reel-section" id="nav-reel">上映作品</a></li>
+        <li><a href="#ticket-section" id="nav-ticket">チケット予約</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html" class="active">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero cinema-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Bebas Neue', sans-serif; font-size: 5rem; letter-spacing: 5px; text-shadow: 0 0 20px #e74c3c;">CLASSIC CINEMA</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Sans JP', sans-serif; letter-spacing: 2px;">映写機とフィルムのロマン</p>
+    </div>
+  </section>
+
+  <!-- 🎞️ Section 1: The Film Reel Scroll -->
+  <section id="reel-section" class="catalog-section" style="background-color: #050505; padding: 4rem 0; overflow: hidden;">
+    <div class="section-title" style="padding: 0 2rem;">
+      <h2 style="color: #e74c3c; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">The Film Reel Scroll</h2>
+      <p style="text-align: center; color: #888; font-family: 'Noto Sans JP', sans-serif;">横にスクロールしてください。フィルムが回り、映写機のアニメーションと共にポスターが流れます。</p>
+    </div>
+    
+    <div class="reel-container-wrapper">
+      <div class="reel-container" id="reel-container">
+        <!-- フィルムの上下の穴（飾り） -->
+        <div class="film-holes top-holes"></div>
+        
+        <div class="film-content" id="film-content">
+          <!-- JSでポスターフレームが生成されます -->
+        </div>
+
+        <!-- フィルムの上下の穴（飾り） -->
+        <div class="film-holes bottom-holes"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🎟️ Section 2: The Ticket Stub -->
+  <section id="ticket-section" class="catalog-section" style="background-color: #1a1a1a; padding: 6rem 2rem;">
+    <div class="section-title">
+      <h2 style="color: #f1c40f; font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px;">The Ticket Stub</h2>
+      <p style="text-align: center; color: #ccc; font-family: 'Noto Sans JP', sans-serif;">チケットをクリックしてください。半券がもぎられ、詳細情報が展開されます。</p>
+    </div>
+
+    <div class="ticket-hall" id="ticket-hall">
+      <!-- JSでチケットが生成されます -->
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer" style="background-color: #000; border-top: 1px solid #333;">
+    <div class="copyright">
+      <p>&copy; 2026 Central Library - Cinema Division. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/cinema.js"></script>
+</body>
+</html>

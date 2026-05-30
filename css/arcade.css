@@ -1,0 +1,252 @@
+/* ==========================================================================
+   ARCADE THEME STYLES
+   ========================================================================== */
+
+/* Hero Section override for Arcade */
+.arcade-hero {
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 0, 0.1) 2px,
+      rgba(0, 255, 0, 0.1) 4px
+    ),
+    url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80') center/cover;
+  border-bottom: 5px solid #ff00ff;
+}
+
+.blink-text {
+  font-family: 'Press Start 2P', cursive;
+  color: #ffff00;
+  margin-top: 2rem;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* 1. The Crane Catcher */
+.arcade-cabinet {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #222;
+  border: 10px solid #555;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.9);
+  display: flex;
+  flex-direction: column;
+}
+
+.crane-screen {
+  width: 100%;
+  height: 400px;
+  background-color: #0a0a0a;
+  border-bottom: 10px solid #444;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 50px rgba(0, 255, 255, 0.1);
+}
+
+/* スキャンラインエフェクト */
+.crane-screen::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* クレーンアーム */
+.crane-arm-container {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+  transition: left 0.1s linear, height 0.5s ease-in-out;
+  height: 50px; /* ワイヤーの長さ（JSで可変） */
+}
+
+.crane-wire {
+  width: 4px;
+  height: 100%;
+  background-color: #888;
+  border-left: 1px solid #ccc;
+}
+
+.crane-claw {
+  width: 60px;
+  height: 40px;
+  background-color: #d35400;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.claw-left, .claw-right {
+  width: 15px;
+  height: 50px;
+  background-color: #e67e22;
+  position: absolute;
+  top: 20px;
+  border-radius: 0 0 10px 10px;
+  transition: transform 0.3s ease;
+}
+
+.claw-left {
+  left: -5px;
+  transform-origin: top right;
+  transform: rotate(20deg);
+}
+
+.claw-right {
+  right: -5px;
+  transform-origin: top left;
+  transform: rotate(-20deg);
+}
+
+/* キャッチ状態（爪が閉じる） */
+.crane-arm-container.catching .claw-left { transform: rotate(5deg); }
+.crane-arm-container.catching .claw-right { transform: rotate(-5deg); }
+
+/* カプセルの山 */
+.capsule-pit {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  justify-content: center;
+  z-index: 10;
+}
+
+.capsule {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: inset -10px -10px 20px rgba(0,0,0,0.5), inset 5px 5px 10px rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+  transition: bottom 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+
+.capsule.caught {
+  z-index: 25; /* クレーンに引っ張られる時 */
+}
+
+/* コントローラーパネル */
+.control-panel {
+  padding: 30px;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 15px 15px;
+  border-top: 5px solid #111;
+}
+
+.arcade-btn {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  border-bottom: 5px solid #c0392b;
+  border-radius: 50%;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+  transition: transform 0.1s, border-width 0.1s;
+}
+
+.arcade-btn:active, .arcade-btn.active {
+  transform: translateY(5px);
+  border-bottom-width: 0px;
+}
+
+.dir-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 1.2rem;
+  margin: 0 10px;
+}
+
+.action-btn {
+  width: 100px;
+  height: 100px;
+  font-size: 0.8rem;
+  background-color: #3498db;
+  border-bottom-color: #2980b9;
+}
+
+/* 獲得結果オーバーレイ */
+.result-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.result-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#result-title {
+  color: #ffff00;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+#result-desc {
+  color: #fff;
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.arcade-btn-small {
+  padding: 10px 20px;
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-bottom: 3px solid #27ae60;
+  border-radius: 5px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.arcade-btn-small:active {
+  transform: translateY(3px);
+  border-bottom-width: 0px;
+}

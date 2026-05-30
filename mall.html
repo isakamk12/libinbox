@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - SHOPPING MALL</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;800&family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/mall.css">
+</head>
+<body class="mall-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title" style="font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 2px;">C-MALL</h1>
+      <span class="lib-subtitle" style="font-family: 'Noto Sans JP', sans-serif;">夢見ヶ丘中央図書館 商業エリア</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#showcase-section" id="nav-showcase">Window Shopping</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html" class="active">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero mall-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Montserrat', sans-serif; font-weight: 200; font-size: 5rem; letter-spacing: 15px;">MALL</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Sans JP', sans-serif; font-weight: 300; letter-spacing: 5px;">トレンドと知識の交差点</p>
+    </div>
+  </section>
+
+  <!-- 🛍️ Window Shopping Section -->
+  <section id="showcase-section" class="catalog-section" style="background-color: #fafafa; padding: 4rem 0;">
+    <div class="section-title">
+      <h2 style="color: #2c3e50; font-family: 'Montserrat', sans-serif; letter-spacing: 3px;">Window Shopping</h2>
+      <p style="text-align: center; color: #7f8c8d; font-family: 'Noto Sans JP', sans-serif;">横にスクロールして、最新のコレクションをご覧ください。</p>
+    </div>
+    
+    <!-- ショーウィンドウのコンテナ -->
+    <div class="showcase-container" id="showcase-container">
+      <div class="showcase-track" id="showcase-track">
+        <!-- JSでショーウィンドウが追加されます -->
+      </div>
+    </div>
+
+    <!-- 試着室風モーダル -->
+    <div class="fitting-room-modal" id="fitting-room-modal">
+      <div class="fitting-room-door left-door" id="door-left"></div>
+      <div class="fitting-room-door right-door" id="door-right"></div>
+      
+      <div class="fitting-room-content">
+        <button class="close-fitting-room" id="close-fitting">✕</button>
+        <div class="fitting-item-image" id="fitting-image"></div>
+        <div class="fitting-details">
+          <p class="fitting-brand" id="fitting-brand">BRAND</p>
+          <h3 id="fitting-title" style="font-family: 'Montserrat', sans-serif; font-size: 2rem; color: #222;">Item Name</h3>
+          <p id="fitting-desc" style="color: #666; margin: 20px 0; line-height: 1.8;">Description goes here.</p>
+          <div class="fitting-price" id="fitting-price">¥0</div>
+          <button class="theme-btn" style="background: #222; color: #fff; width: 100%; border-radius: 0; padding: 15px; margin-top: 20px; font-weight: 800; letter-spacing: 2px;">ADD TO CART</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer" style="background-color: #fff; border-top: 1px solid #eee; color: #999;">
+    <div class="copyright">
+      <p style="font-family: 'Montserrat', sans-serif;">&copy; 2026 Central Library - Shopping Mall.</p>
+    </div>
+  </footer>
+
+  <script src="js/mall.js"></script>
+</body>
+</html>

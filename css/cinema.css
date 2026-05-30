@@ -1,0 +1,234 @@
+/* ==========================================================================
+   CINEMA THEME STYLES
+   ========================================================================== */
+
+/* Hero Section override for Cinema */
+.cinema-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80') center/cover;
+}
+
+/* 1. The Film Reel Scroll */
+.reel-container-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2rem 0;
+  /* スクロールバーのカスタマイズ */
+  scrollbar-width: thin;
+  scrollbar-color: #e74c3c #111;
+}
+
+.reel-container-wrapper::-webkit-scrollbar {
+  height: 12px;
+}
+.reel-container-wrapper::-webkit-scrollbar-track {
+  background: #111;
+}
+.reel-container-wrapper::-webkit-scrollbar-thumb {
+  background-color: #e74c3c;
+  border-radius: 6px;
+  border: 3px solid #111;
+}
+
+.reel-container {
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  background-color: #111;
+  padding: 20px 0;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+.film-holes {
+  height: 30px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 10px,
+    #fff 10px,
+    #fff 25px,
+    transparent 25px,
+    transparent 40px
+  );
+  opacity: 0.8;
+}
+
+.film-content {
+  display: flex;
+  gap: 20px;
+  padding: 20px 40px;
+}
+
+.film-frame {
+  width: 250px;
+  height: 350px;
+  background-color: #222;
+  border: 2px solid #333;
+  position: relative;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.film-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.film-poster {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: grayscale(80%) contrast(120%);
+  transition: filter 0.5s ease;
+}
+
+.film-frame:hover {
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 0 30px rgba(231, 76, 60, 0.4);
+}
+
+.film-frame:hover .film-poster {
+  filter: grayscale(0%) contrast(100%);
+}
+
+.film-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  z-index: 3;
+}
+
+.film-frame:hover .film-title {
+  transform: translateY(0);
+}
+
+/* 2. The Ticket Stub */
+.ticket-hall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+.ticket {
+  display: flex;
+  width: 400px;
+  height: 150px;
+  background-color: #f4e8c1;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  position: relative;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+/* チケットの切り取り線（ミシン目） */
+.ticket::before, .ticket::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  width: 20px;
+  background-image: radial-gradient(circle at 10px 10px, transparent 10px, #f4e8c1 11px);
+  background-size: 20px 20px;
+}
+
+.ticket-main {
+  flex: 1;
+  padding: 20px;
+  border-right: 2px dashed #aaa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  background-color: #f4e8c1;
+  border-radius: 10px 0 0 10px;
+}
+
+.ticket-stub {
+  width: 100px;
+  padding: 20px 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 5px;
+  border-radius: 0 10px 10px 0;
+  transform-origin: left center;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.5s ease;
+  z-index: 3;
+}
+
+/* もぎられた時のアニメーション */
+.ticket.torn .ticket-stub {
+  transform: rotateY(110deg) rotateZ(-10deg) translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* もぎられた後に表示される詳細情報パネル */
+.ticket-details {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #222;
+  color: #fff;
+  border-radius: 0 0 10px 10px;
+  padding: 15px;
+  box-sizing: border-box;
+  transform-origin: top center;
+  transform: rotateX(-90deg);
+  opacity: 0;
+  transition: transform 0.5s ease 0.3s, opacity 0.3s ease 0.3s;
+  box-shadow: 0 15px 20px rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
+.ticket.torn .ticket-details {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+
+/* チケット内部のテキストスタイル */
+.ticket-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: #222;
+  margin: 0;
+}
+
+.ticket-info {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 5px;
+}

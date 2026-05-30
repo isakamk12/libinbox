@@ -1,0 +1,217 @@
+/* ==========================================================================
+   SHOPPING MALL THEME STYLES
+   ========================================================================== */
+
+/* Hero Section override */
+.mall-hero {
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.8), rgba(250, 250, 250, 1)),
+    url('https://images.unsplash.com/photo-1519567281027-1c0526e033fb?auto=format&fit=crop&q=80') center/cover;
+  color: #222; /* 白背景なので文字は黒系に */
+  border-bottom: 1px solid #eee;
+}
+
+.mall-hero .hero-title, .mall-hero .hero-subtitle {
+  color: #222;
+  text-shadow: none;
+}
+
+/* 1. Window Shopping */
+.showcase-container {
+  width: 100%;
+  padding: 50px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  /* スクロールバーを隠す */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.showcase-container::-webkit-scrollbar {
+  display: none;
+}
+
+.showcase-track {
+  display: flex;
+  gap: 40px;
+  padding: 0 5vw;
+  width: max-content;
+}
+
+/* ショーウィンドウ（カード） */
+.window-card {
+  width: 350px;
+  height: 500px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+  overflow: hidden;
+}
+
+.window-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+
+/* 額縁風の縁取り */
+.window-card::before {
+  content: '';
+  position: absolute;
+  top: 15px; left: 15px; right: 15px; bottom: 15px;
+  border: 1px solid #222;
+  pointer-events: none;
+  z-index: 10;
+  transition: transform 0.4s;
+}
+
+.window-card:hover::before {
+  transform: scale(0.95);
+}
+
+/* 画像エリア */
+.window-image {
+  width: 100%;
+  height: 70%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: transform 0.6s;
+}
+
+.window-card:hover .window-image {
+  transform: scale(1.05);
+}
+
+/* 文字情報エリア */
+.window-info {
+  height: 30%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  position: relative;
+  z-index: 5;
+}
+
+.window-brand {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: #999;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.window-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.window-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* 試着室モーダル */
+.fitting-room-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fitting-room-modal.active {
+  pointer-events: auto;
+}
+
+/* カーテン（扉） */
+.fitting-room-door {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: #2c3e50;
+  z-index: 1005;
+  transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.5);
+}
+
+.fitting-room-door::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 10px;
+  background: rgba(0,0,0,0.2);
+}
+
+.left-door { left: 0; transform-origin: left; border-right: 2px solid #1a252f; }
+.left-door::after { right: 0; }
+.right-door { right: 0; transform-origin: right; border-left: 2px solid #1a252f; }
+.right-door::after { left: 0; }
+
+.fitting-room-modal.active .left-door { transform: translateX(-100%); }
+.fitting-room-modal.active .right-door { transform: translateX(100%); }
+
+/* モーダルの中身 */
+.fitting-room-content {
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.3s;
+  transition-delay: 0.3s;
+}
+
+.fitting-room-modal.active .fitting-room-content {
+  opacity: 1;
+}
+
+.fitting-item-image {
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.fitting-details {
+  width: 50%;
+  padding: 10% 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fafafa;
+  position: relative;
+}
+
+.close-fitting-room {
+  position: absolute;
+  top: 30px; right: 30px;
+  font-size: 2rem;
+  background: none; border: none;
+  color: #222; cursor: pointer;
+  z-index: 1010;
+}
+
+@media (max-width: 768px) {
+  .fitting-room-content {
+    flex-direction: column;
+  }
+  .fitting-item-image { width: 100%; height: 40%; }
+  .fitting-details { width: 100%; height: 60%; padding: 5%; }
+}

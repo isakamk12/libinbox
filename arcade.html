@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - RETRO ARCADE</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/arcade.css">
+</head>
+<body class="arcade-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title" style="font-family: 'Press Start 2P', cursive; font-size: 1rem; color: #00ff00;">CENTRAL_LIBRARY</h1>
+      <span class="lib-subtitle" style="font-family: 'DotGothic16', sans-serif;">夢見ヶ丘中央図書館 ポータル</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#crane-section" id="nav-crane">UFO CATCHER</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html" class="active">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero arcade-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Press Start 2P', cursive; font-size: 3rem; color: #ff00ff; text-shadow: 4px 4px 0px #00ffff;">RETRO ARCADE</h2>
+      <p class="hero-subtitle" style="font-family: 'DotGothic16', sans-serif; font-size: 1.5rem; color: #fff;">INSERT COIN TO START</p>
+      <div class="blink-text">PRESS ANY BUTTON</div>
+    </div>
+  </section>
+
+  <!-- 🕹️ The Crane Catcher -->
+  <section id="crane-section" class="catalog-section" style="background-color: #111; padding: 2rem 0;">
+    <div class="section-title">
+      <h2 style="color: #00ff00; font-family: 'Press Start 2P', cursive; font-size: 1.5rem;">The Crane Catcher</h2>
+      <p style="text-align: center; color: #aaa; font-family: 'DotGothic16', sans-serif; font-size: 1.2rem;">クレーンを操作して情報を掴み取れ！<br>ボタンを押すか、キーボードの[←][→][↓]を使用</p>
+    </div>
+    
+    <div class="arcade-cabinet">
+      <!-- 画面部分 -->
+      <div class="crane-screen" id="crane-screen">
+        
+        <!-- クレーンアーム -->
+        <div class="crane-arm-container" id="crane-arm-container" style="left: 50%;">
+          <div class="crane-wire" id="crane-wire"></div>
+          <div class="crane-claw" id="crane-claw">
+            <div class="claw-left"></div>
+            <div class="claw-right"></div>
+          </div>
+        </div>
+
+        <!-- カプセル（アイテム）の山 -->
+        <div class="capsule-pit" id="capsule-pit">
+          <!-- JSでカプセルが敷き詰められます -->
+        </div>
+
+        <!-- 獲得表示用のオーバーレイ -->
+        <div class="result-overlay" id="result-overlay">
+          <h3 id="result-title">YOU GOT IT!</h3>
+          <p id="result-desc">Information unclocked.</p>
+          <button id="result-close" class="arcade-btn-small">PLAY AGAIN</button>
+        </div>
+
+      </div>
+
+      <!-- コントローラーパネル -->
+      <div class="control-panel">
+        <div class="joystick-area">
+          <button class="arcade-btn dir-btn" id="btn-left">◀</button>
+          <button class="arcade-btn dir-btn" id="btn-right">▶</button>
+        </div>
+        <div class="action-area">
+          <button class="arcade-btn action-btn" id="btn-catch">CATCH<br>(DOWN)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer" style="background-color: #000; border-top: 2px dashed #333;">
+    <div class="copyright">
+      <p style="font-family: 'Press Start 2P', cursive; font-size: 0.6rem; color: #666;">(C) 2026 CENTRAL LIBRARY ARCADE</p>
+    </div>
+  </footer>
+
+  <script src="js/arcade.js"></script>
+</body>
+</html>

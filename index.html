@@ -30,8 +30,37 @@
     </nav>
 
     <div class="theme-switcher" aria-label="テーマ切り替え">
-      <a href="index.html" class="theme-btn active">Library</a>
-      <a href="music.html" class="theme-btn">Music</a>
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html" class="active">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -48,6 +77,45 @@
       <div class="ornament">
         <span class="ornament-symbol">◆</span>
       </div>
+    </div>
+  </section>
+
+  <!-- 🛗 The Infinite Elevator (Grand Entrance) -->
+  <section id="infinite-elevator" class="elevator-section">
+    <div class="elevator-instructions">
+      <p>Scroll to change floors</p>
+      <div class="scroll-arrow">▼</div>
+    </div>
+    
+    <div class="elevator-frame elevator-open" id="elevator-frame">
+      <!-- ターミナル（タワー選択）UI -->
+      <div id="tower-selection" class="tower-selection-panel">
+        <h2 class="terminal-title">SELECT DESTINATION TOWER</h2>
+        <div class="tower-options">
+          <button class="tower-btn" data-tower="public">PUBLIC TOWER<br><small>公共施設</small></button>
+          <button class="tower-btn" data-tower="commercial">COMMERCIAL TOWER<br><small>商業施設</small></button>
+          <button class="tower-btn" data-tower="school">SCHOOL TOWER<br><small>教育機関</small></button>
+        </div>
+      </div>
+
+      <!-- フロアUI（選択後に表示される） -->
+      <div id="floor-ui" style="display: none; width: 100%; height: 100%;">
+        <div class="elevator-header">
+          <button id="btn-back-terminal" class="back-btn">◀ RETURN</button>
+          <div class="elevator-display" id="elevator-display">1F</div>
+        </div>
+        
+        <div class="elevator-view" id="elevator-view">
+          <div id="elevator-content">
+            <h2 id="floor-title">1F: THE LIBRARY</h2>
+            <p id="floor-desc">静寂に包まれた書庫の中で、あなただけの１冊を見つけてください。</p>
+            <a href="#bookshelf-section" id="floor-link" class="theme-btn floor-btn">ENTER FLOOR</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="elevator-door door-left" id="door-left"></div>
+      <div class="elevator-door door-right" id="door-right"></div>
     </div>
   </section>
 

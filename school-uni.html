@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - UNIVERSITY</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/school-uni.css">
+</head>
+<body class="uni-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title" style="font-family: 'Playfair Display', serif; letter-spacing: 3px;">UNIVERSITAS YUMEMIGAOKA</h1>
+      <span class="lib-subtitle" style="font-family: 'Noto Serif JP', serif;">夢見ヶ丘中央図書館 大学キャンパス</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#campus-section" id="nav-campus">Campus Map</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html" class="active">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero uni-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 5.5rem; letter-spacing: 5px;">ACADEMIA</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Serif JP', serif; font-style: italic; color: #d4af37;">深淵なる知識の探求へ。</p>
+    </div>
+  </section>
+
+  <!-- 🏛️ Campus Map & Archives Section -->
+  <section id="campus-section" class="catalog-section" style="background-color: #f4f1ea; padding: 5rem 0;">
+    <div class="section-title">
+      <h2 style="color: #2c3e50; font-family: 'Playfair Display', serif;">The Campus Map</h2>
+      <p style="text-align: center; color: #7f8c8d; font-family: 'Noto Serif JP', serif; margin-top: 10px;">施設を選択し、論文アーカイブや講義録にアクセスしてください。</p>
+    </div>
+    
+    <div class="uni-container">
+      
+      <!-- キャンパスマップ (CSS Grid) -->
+      <div class="campus-map">
+        <!-- JSで各学部棟の区画を生成 -->
+        <div id="map-grid" class="map-grid"></div>
+      </div>
+
+      <!-- アーカイブリーダー（詳細パネル） -->
+      <div class="archive-reader" id="archive-reader">
+        <div class="reader-header">
+          <h3 id="reader-title">Archive System</h3>
+          <span class="reader-id" id="reader-id">v.2.0.4</span>
+        </div>
+        <div class="reader-body">
+          <div class="reader-placeholder" id="reader-placeholder">
+            <span style="font-size: 3rem; color: #bdc3c7;">📜</span>
+            <p style="margin-top: 15px; color: #7f8c8d;">マップから施設を選択してください。</p>
+          </div>
+          <div class="reader-content" id="reader-content" style="display: none;">
+            <h4 id="doc-title" style="font-family: 'Noto Serif JP', serif; font-size: 1.5rem; color: #2c3e50; margin-bottom: 15px; border-bottom: 1px solid #d4af37; padding-bottom: 10px;">Document Title</h4>
+            <div class="doc-meta" style="font-family: 'Playfair Display', serif; font-size: 0.9rem; color: #7f8c8d; margin-bottom: 20px;">
+              Author: <span id="doc-author">Dr. Unknown</span> | Date: <span id="doc-date">2026.10.15</span>
+            </div>
+            <p id="doc-text" style="font-family: 'Noto Serif JP', serif; line-height: 1.8; color: #34495e;"></p>
+            <button class="theme-btn" style="margin-top: 30px; background: #2c3e50; color: #fff; border: 1px solid #d4af37;">DOWNLOAD PDF</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer" style="background-color: #2c3e50; border-top: 3px solid #d4af37;">
+    <div class="copyright">
+      <p style="font-family: 'Playfair Display', serif; color: #bdc3c7;">&copy; 2026 Universitas Yumemigaoka.</p>
+    </div>
+  </footer>
+
+  <script src="js/school-uni.js"></script>
+</body>
+</html>

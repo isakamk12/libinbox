@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - AQUARIUM</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/aquarium.css">
+</head>
+<body class="aquarium-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title">CENTRAL LIBRARY</h1>
+      <span class="lib-subtitle">夢見ヶ丘中央図書館 ポータル</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#living-gallery" id="nav-gallery">大水槽</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html" class="active">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero aquarium-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Quicksand', sans-serif; font-size: 4rem; letter-spacing: 5px; text-shadow: 0 0 20px #3498db;">THE AQUARIUM</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Sans JP', sans-serif;">空間を泳ぐ、生きたギャラリー</p>
+    </div>
+  </section>
+
+  <!-- 🐟 The Living Aquarium -->
+  <section id="living-gallery" class="catalog-section" style="background-color: #0b1d3a; padding: 2rem 0; overflow: hidden; position: relative;">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="color: #64b5f6; font-family: 'Quicksand', sans-serif;">The Living Aquarium</h2>
+      <p style="text-align: center; color: #b3e5fc; font-family: 'Noto Sans JP', sans-serif;">アイテムが魚のように泳ぎ回ります。マウスを近づけてみてください。</p>
+    </div>
+    
+    <!-- 水槽コンテナ -->
+    <div class="tank-container" id="tank-container">
+      <!-- 泡のエフェクト -->
+      <div class="bubbles" id="bubbles-layer"></div>
+      
+      <!-- 魚（アイテム）が追加されるレイヤー -->
+      <div class="fish-layer" id="fish-layer"></div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer" style="background-color: #051024; border-top: 1px solid #1a365d;">
+    <div class="copyright">
+      <p>&copy; 2026 Central Library - Aquarium Division. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/aquarium.js"></script>
+</body>
+</html>

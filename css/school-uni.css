@@ -1,0 +1,177 @@
+/* ==========================================================================
+   UNIVERSITY THEME STYLES
+   ========================================================================== */
+
+/* Hero Section override */
+.uni-hero {
+  background: 
+    linear-gradient(rgba(26, 37, 47, 0.6), rgba(26, 37, 47, 0.8)),
+    url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80') center/cover;
+  border-bottom: 5px solid #d4af37; /* ゴールド */
+}
+
+/* Container */
+.uni-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 40px;
+  padding: 0 20px;
+}
+
+@media (max-width: 900px) {
+  .uni-container {
+    flex-direction: column;
+  }
+}
+
+/* 1. Campus Map */
+.campus-map {
+  flex: 1;
+  background: #e8e4d9;
+  border: 1px solid #dcd1ba;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.05), 0 10px 20px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+/* マップを古い羊皮紙のような質感に */
+.campus-map::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 150px);
+  gap: 15px;
+  height: 100%;
+}
+
+/* 区画（建物） */
+.facility {
+  background: #c0392b; /* レンガ色ベース */
+  border: 2px solid #8e44ad;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.facility:hover, .facility.active {
+  transform: translateY(-5px);
+  box-shadow: 10px 10px 25px rgba(0,0,0,0.3);
+  border-color: #d4af37;
+}
+
+/* 建物の屋根のテクスチャ風 */
+.facility::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(0,0,0,0.1) 5px,
+    rgba(0,0,0,0.1) 10px
+  );
+  pointer-events: none;
+}
+
+.fac-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  z-index: 2;
+}
+
+.fac-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  font-size: 1.1rem;
+  z-index: 2;
+  text-align: center;
+  padding: 0 10px;
+}
+
+/* 様々な建物の色 */
+.fac-lib { background: #2c3e50; border-color: #1a252f; grid-column: span 2; }
+.fac-sci { background: #16a085; border-color: #0b5345; }
+.fac-art { background: #d35400; border-color: #873600; grid-row: span 2; }
+.fac-med { background: #2980b9; border-color: #154360; }
+.fac-eng { background: #8e44ad; border-color: #4a235a; grid-column: span 2; }
+
+/* 2. Archive Reader (詳細パネル) */
+.archive-reader {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #bdc3c7;
+  border-radius: 5px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+}
+
+.reader-header {
+  background: #2c3e50;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 3px solid #d4af37;
+}
+
+.reader-header h3 {
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.reader-id {
+  font-family: monospace;
+  color: #95a5a6;
+  font-size: 0.8rem;
+}
+
+.reader-body {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.reader-placeholder {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 100%;
+}
+
+.reader-content {
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

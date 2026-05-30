@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - ELEMENTARY SCHOOL</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yomogi&family=Kiwi+Maru:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/school-es.css">
+</head>
+<body class="es-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title" style="font-family: 'Kiwi Maru', serif; font-size: 2rem; color: #fff; text-shadow: 2px 2px 0px #e74c3c;">ゆめみがおか小学校</h1>
+      <span class="lib-subtitle" style="font-family: 'Yomogi', cursive; color: #fff;">中央図書館 学びのエリア</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#blackboard-section" id="nav-blackboard">こくばん</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html" class="active">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero es-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Kiwi Maru', serif; font-size: 5rem; color: #f1c40f; text-shadow: 3px 3px 0px #d35400;">はじまりの場所</h2>
+      <p class="hero-subtitle" style="font-family: 'Yomogi', cursive; font-size: 2rem; color: #fff; background: rgba(0,0,0,0.5); padding: 5px 15px; border-radius: 10px; display: inline-block;">知るって、たのしい！</p>
+    </div>
+  </section>
+
+  <!-- 🎒 Blackboard Section -->
+  <section id="blackboard-section" class="catalog-section" style="background-color: #f5f5dc; padding: 4rem 0;">
+    <div class="section-title">
+      <h2 style="color: #e74c3c; font-family: 'Kiwi Maru', serif;">みんなの黒板（こくばん）</h2>
+      <p style="text-align: center; color: #555; font-family: 'Yomogi', cursive; font-size: 1.2rem;">チョークをクリックしてみてね。</p>
+    </div>
+    
+    <div class="classroom-container">
+      <!-- 黒板 -->
+      <div class="blackboard-frame">
+        <div class="blackboard" id="blackboard">
+          <div class="chalk-text" style="top: 20px; left: 20px; font-size: 1.5rem; color: #fff;">にっちょく：さとう、すずき</div>
+          <div class="chalk-text" style="top: 20px; right: 20px; font-size: 1.5rem; color: #ff9ff3;">めあて：なかよくまなぼう</div>
+          
+          <!-- JSで描画されるエリア -->
+          <div id="drawing-area"></div>
+        </div>
+        <!-- 黒板消しとチョーク置き場 -->
+        <div class="chalk-ledge">
+          <div class="eraser" id="eraser"></div>
+          <div class="chalk chalk-white" data-color="#fff"></div>
+          <div class="chalk chalk-red" data-color="#ff6b6b"></div>
+          <div class="chalk chalk-yellow" data-color="#feca57"></div>
+          <div class="chalk chalk-blue" data-color="#48dbfb"></div>
+        </div>
+      </div>
+
+      <!-- ランドセル（アイテムボックス） -->
+      <div class="randoseru-area">
+        <h3 style="font-family: 'Kiwi Maru', serif; color: #c0392b; margin-bottom: 10px;">きょうのじかんわり</h3>
+        <div class="timetable" id="timetable">
+          <!-- JSで追加 -->
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer" style="background-color: #e67e22; border-top: 5px dashed #d35400;">
+    <div class="copyright">
+      <p style="font-family: 'Yomogi', cursive; color: #fff; font-size: 1.2rem;">&copy; 2026 ゆめみがおかしょうがっこう</p>
+    </div>
+  </footer>
+
+  <script src="js/school-es.js"></script>
+</body>
+</html>

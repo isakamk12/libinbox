@@ -1,0 +1,138 @@
+/* ==========================================================================
+   ART GALLERY THEME STYLES
+   ========================================================================== */
+
+/* Hero Section override for Art */
+.art-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1518998053401-878c730e285d?auto=format&fit=crop&q=80') center/cover;
+}
+
+/* 1. The 3D Framed Gallery */
+.gallery-wall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem;
+  perspective: 2000px;
+}
+
+.art-frame-wrapper {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transition: transform 0.1s;
+}
+
+.art-frame {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #f4d03f; /* ゴールドフレーム風 */
+  border: 15px solid #b7950b;
+  border-radius: 5px;
+  box-shadow: 10px 15px 30px rgba(0,0,0,0.4), inset 0 0 10px rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateZ(20px);
+  overflow: hidden;
+}
+
+.art-frame::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.art-canvas {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+/* 油絵のテクスチャ表現（フィルターやオーバーレイ） */
+.art-canvas::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.15"/></svg>');
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+/* 光の反射（Glare） */
+.art-glare {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%);
+  z-index: 5;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.art-label {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%) translateZ(10px);
+  background-color: #fff;
+  padding: 5px 15px;
+  border-radius: 2px;
+  box-shadow: 2px 5px 10px rgba(0,0,0,0.2);
+  font-family: 'Noto Serif JP', serif;
+  font-size: 0.9rem;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* 2. The Spotlight Canvas */
+.spotlight-room {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #000;
+  cursor: none; /* カスタムカーソルにするため非表示 */
+}
+
+.hidden-canvas {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.masterpiece-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 200px);
+  gap: 10px;
+  width: 80%;
+  max-width: 1000px;
+}
+
+.masterpiece {
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background-size: cover;
+  background-position: center;
+}
+
+.spotlight-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #000;
+  z-index: 5;
+  /* CSS変数でスポットライトの座標とサイズを制御 */
+  --x: 50%;
+  --y: 50%;
+  --size: 150px;
+  mask-image: radial-gradient(circle at var(--x) var(--y), transparent 0%, transparent var(--size), black calc(var(--size) + 50px));
+  -webkit-mask-image: radial-gradient(circle at var(--x) var(--y), transparent 0%, transparent var(--size), black calc(var(--size) + 50px));
+  pointer-events: none; /* 下の要素のイベントを邪魔しない */
+}

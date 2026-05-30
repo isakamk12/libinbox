@@ -1,0 +1,245 @@
+/* ==========================================================================
+   HIGH SCHOOL THEME STYLES (Glassmorphism & Flat Design)
+   ========================================================================== */
+
+/* Hero Section override */
+.hs-hero {
+  background: 
+    linear-gradient(rgba(47, 53, 66, 0.4), rgba(47, 53, 66, 0.6)),
+    url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80') center/cover;
+  border-bottom: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* スマホとパネルのコンテナ */
+.smartphone-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  padding: 20px;
+}
+
+@media (max-width: 800px) {
+  .smartphone-container {
+    flex-direction: column;
+  }
+}
+
+/* 1. スマホ型UI */
+.smartphone {
+  width: 320px;
+  height: 650px;
+  background: #fff;
+  border-radius: 40px;
+  box-shadow: 
+    0 0 0 10px #2f3542,
+    0 30px 60px rgba(0,0,0,0.2),
+    inset 0 0 10px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ノッチ（上部のインカメラ部分） */
+.notch {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 25px;
+  background: #2f3542;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 20;
+}
+
+/* 画面内部 */
+.screen {
+  flex: 1;
+  background: #f1f2f6;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.app-header {
+  height: 80px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 10;
+}
+
+.app-header h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2f3542;
+  margin: 0;
+}
+
+.status-dot {
+  width: 8px; height: 8px;
+  background: #2ed573;
+  border-radius: 50%;
+  position: absolute;
+  right: 20px; bottom: 20px;
+}
+
+/* チャット（タイムライン）エリア */
+.chat-container {
+  flex: 1;
+  padding: 20px 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  /* スクロールバー非表示 */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.chat-container::-webkit-scrollbar { display: none; }
+
+/* 吹き出し */
+.chat-bubble {
+  max-width: 85%;
+  padding: 12px 15px;
+  border-radius: 20px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  position: relative;
+  cursor: pointer;
+  transform-origin: bottom;
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.chat-bubble:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.chat-bubble.active {
+  border: 2px solid #3742fa;
+}
+
+.chat-left {
+  align-self: flex-start;
+  background: #fff;
+  color: #2f3542;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.chat-right {
+  align-self: flex-end;
+  background: #3742fa;
+  color: #fff;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 2px 5px rgba(55,66,250,0.3);
+}
+
+.chat-time {
+  font-size: 0.7rem;
+  color: #a4b0be;
+  margin-top: 5px;
+  text-align: right;
+}
+.chat-right .chat-time { color: #dcdde1; }
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* アプリフッター（入力欄） */
+.app-footer {
+  height: 60px;
+  background: #fff;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.02);
+}
+
+.input-bar {
+  flex: 1;
+  height: 100%;
+  background: #f1f2f6;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  gap: 10px;
+}
+
+.fake-input {
+  flex: 1;
+  color: #a4b0be;
+  font-size: 0.9rem;
+}
+
+/* 2. サイドパネル（詳細情報） */
+.side-panel {
+  width: 350px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.side-panel h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  color: #2f3542;
+  margin-bottom: 15px;
+}
+
+.side-panel p {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: #57606f;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.panel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background: #eccc68;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* 背景装飾（グラスモーフィズム用） */
+.bg-bubble {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 1;
+}
+.b1 { width: 300px; height: 300px; background: #ff4757; top: -100px; left: -100px; opacity: 0.2; }
+.b2 { width: 400px; height: 400px; background: #1e90ff; bottom: -150px; right: -100px; opacity: 0.2; }
+.b3 { width: 200px; height: 200px; background: #2ed573; top: 30%; left: 60%; opacity: 0.2; }

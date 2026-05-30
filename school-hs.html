@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - HIGH SCHOOL</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/school-hs.css">
+</head>
+<body class="hs-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title" style="font-family: 'Inter', sans-serif; font-weight: 800; background: linear-gradient(45deg, #a8ff78, #78ffd6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">HIGH SCHOOL</h1>
+      <span class="lib-subtitle" style="font-family: 'Noto Sans JP', sans-serif;">夢見ヶ丘中央図書館 高校エリア</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#digital-section" id="nav-digital">Digital Native</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html" class="active">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero hs-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Inter', sans-serif; font-weight: 800; font-size: 5rem; color: #fff;">DIGITAL YOUTH</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Sans JP', sans-serif; font-weight: 400; color: #f1f2f6; backdrop-filter: blur(10px); background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 20px;">情報の波に乗りこなせ。</p>
+    </div>
+  </section>
+
+  <!-- 📱 Digital Native Section -->
+  <section id="digital-section" class="catalog-section" style="background-color: #f1f2f6; padding: 4rem 0; overflow: hidden; position: relative;">
+    <div class="section-title">
+      <h2 style="color: #2f3542; font-family: 'Inter', sans-serif; letter-spacing: 2px;">The Timeline</h2>
+      <p style="text-align: center; color: #747d8c; font-family: 'Noto Sans JP', sans-serif; margin-top: 10px;">次々と流れてくる情報のタイムライン。</p>
+    </div>
+    
+    <div class="smartphone-container">
+      
+      <!-- スマホ枠 -->
+      <div class="smartphone">
+        <div class="notch"></div>
+        
+        <!-- スマホ画面内 -->
+        <div class="screen" id="timeline-screen">
+          <div class="app-header">
+            <h3>LibraryChat</h3>
+            <span class="status-dot"></span>
+          </div>
+          
+          <div class="chat-container" id="chat-container">
+            <!-- JSでチャットバブル（情報）が追加されます -->
+          </div>
+          
+          <div class="app-footer">
+            <div class="input-bar">
+              <span class="icon">📷</span>
+              <div class="fake-input">Type a message...</div>
+              <span class="icon">🎤</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- スマホの横に表示される詳細パネル（ホバーやクリックで表示） -->
+      <div class="side-panel" id="side-panel">
+        <h3 id="panel-title">Select a message</h3>
+        <p id="panel-desc">スマホ画面のチャットメッセージをクリックすると、ここに詳細が表示されます。</p>
+        <div class="panel-tags" id="panel-tags"></div>
+        <button class="theme-btn" style="width:100%; margin-top:20px; border-radius:20px; background:#2ed573; border:none;">OPEN LINK</button>
+      </div>
+
+    </div>
+
+    <!-- 背景の装飾用バブル（グラスモーフィズム） -->
+    <div class="bg-bubble b1"></div>
+    <div class="bg-bubble b2"></div>
+    <div class="bg-bubble b3"></div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer" style="background-color: #fff; border-top: 1px solid #dfe4ea;">
+    <div class="copyright">
+      <p style="font-family: 'Inter', sans-serif; color: #a4b0be;">&copy; 2026 Central Library - High School Area.</p>
+    </div>
+  </footer>
+
+  <script src="js/school-hs.js"></script>
+</body>
+</html>

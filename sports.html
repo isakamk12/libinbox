@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - SPORTS SHOP</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/sports.css">
+</head>
+<body class="sports-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title" style="font-family: 'Teko', sans-serif; font-size: 2rem; letter-spacing: 2px; color: #f1c40f;">CENTRAL SPORTS</h1>
+      <span class="lib-subtitle" style="font-family: 'Noto Sans JP', sans-serif;">夢見ヶ丘中央図書館 スポーツギア館</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#arena-section" id="nav-arena">The Arena</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html" class="active">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero sports-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Teko', sans-serif; font-weight: 700; font-size: 6rem; color: #fff; text-transform: uppercase; font-style: italic; text-shadow: 4px 4px 0px #e67e22;">Unleash Your Potential</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Sans JP', sans-serif; font-weight: 900; font-size: 1.5rem; color: #f1c40f; transform: skewX(-10deg);">限界を超えろ。</p>
+    </div>
+  </section>
+
+  <!-- 🏀 Dynamic Arena Section -->
+  <section id="arena-section" class="catalog-section" style="background-color: #222; padding: 0; position: relative;">
+    
+    <!-- コート・競技場風の領域 -->
+    <div class="physics-arena" id="physics-arena">
+      <div class="arena-title-overlay">
+        <h2>THE ARENA</h2>
+        <p>ドラッグして投げる。ダブルクリックで情報を見る。</p>
+      </div>
+
+      <!-- JSでボール（情報アイテム）が生成されます -->
+    </div>
+
+    <!-- 情報パネル -->
+    <div class="gear-info-panel" id="gear-info-panel">
+      <div class="gear-info-header">
+        <h3 id="gear-title">GEAR NAME</h3>
+        <button id="close-gear">✕</button>
+      </div>
+      <div class="gear-info-body">
+        <p class="gear-stat" id="gear-stat">Type: Standard</p>
+        <p id="gear-desc">This is a dynamic physics object.</p>
+        <button class="theme-btn action-btn">EQUIP NOW</button>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="js/sports.js"></script>
+</body>
+</html>

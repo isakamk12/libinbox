@@ -1080,3 +1080,173 @@ function renderConstellation() {
     });
   });
 }
+
+/* ==========================================================================
+   THE INFINITE ELEVATOR LOGIC
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+  initElevator();
+});
+
+function initElevator() {
+  const elevatorSection = document.getElementById("infinite-elevator");
+  if (!elevatorSection) return;
+
+  const towerData = {
+    public: [
+      { floor: "1F", title: "THE LIBRARY", desc: "静寂に包まれた書庫の中で、あなただけの１冊を。", link: "#bookshelf-section", bg: "url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&q=80')" },
+      { floor: "2F", title: "THE MUSIC HALL", desc: "ジャンルを超えた音楽の波形と、レコードの重力。", link: "music.html", bg: "url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80')" },
+      { floor: "3F", title: "THE ART GALLERY", desc: "光と額縁の美学。隠された名画を照らし出す。", link: "art.html", bg: "url('https://images.unsplash.com/photo-1518998053401-878c730e285d?auto=format&fit=crop&q=80')" },
+      { floor: "4F", title: "THE MUSEUM", desc: "発見と観察の空間。自らの手で化石を発掘する。", link: "museum.html", bg: "url('https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?auto=format&fit=crop&q=80')" },
+      { floor: "5F", title: "THE CINEMA", desc: "映写機とフィルムのロマン。チケットをもぎる体験。", link: "cinema.html", bg: "url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80')" },
+      { floor: "6F", title: "THE AQUARIUM", desc: "生きたギャラリー。空間を泳ぎ回るアイテムたち。", link: "aquarium.html", bg: "url('https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80')" },
+      { floor: "7F", title: "THE OBSERVATORY", desc: "暗闇の星空から星座を紡ぎ、情報を読み解く。", link: "observatory.html", bg: "url('https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80')" }
+    ],
+    commercial: [
+      { floor: "1F", title: "THE RESTAURANT", desc: "美味しい情報が流れてくる、新しい食体験。", link: "restaurant.html", bg: "url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80')" },
+      { floor: "2F", title: "THE SHOPPING MALL", desc: "ショーウィンドウを巡るようなショッピング体験。", link: "mall.html", bg: "url('https://images.unsplash.com/photo-1519567281027-1c0526e033fb?auto=format&fit=crop&q=80')" },
+      { floor: "3F", title: "THE SPORTS SHOP", desc: "躍動するアイテム。物理演算で転がるスポーツ用品。", link: "sports.html", bg: "url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80')" },
+      { floor: "4F", title: "THE ARCADE", desc: "クレーンで情報を掴み取る、完全なアーケード体験。", link: "arcade.html", bg: "url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80')" }
+    ],
+    school: [
+      { floor: "1F", title: "ELEMENTARY SCHOOL", desc: "黒板とランドセル。原点の学び舎。", link: "school-es.html", bg: "url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80')" },
+      { floor: "2F", title: "JUNIOR HIGH SCHOOL", desc: "部室と時間割。少し大人びた空間。", link: "school-jhs.html", bg: "url('https://images.unsplash.com/photo-1522661067900-ab829854a57f?auto=format&fit=crop&q=80')" },
+      { floor: "3F", title: "HIGH SCHOOL", desc: "ロッカーとスマートフォン。青春の交差点。", link: "school-hs.html", bg: "url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80')" },
+      { floor: "4F", title: "UNIVERSITY", desc: "巨大な講堂とキャンパスマップ。", link: "school-uni.html", bg: "url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80')" },
+      { floor: "5F", title: "VOCATIONAL SCHOOL", desc: "専門職のアトリエと機材の数々。", link: "school-voc.html", bg: "url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80')" }
+    ]
+  };
+
+  let activeFloors = null;
+  let currentFloor = 0;
+  let isAnimating = false;
+
+  const frame = document.querySelector(".elevator-frame");
+  const terminalPanel = document.getElementById("tower-selection");
+  const floorUi = document.getElementById("floor-ui");
+  
+  const display = document.getElementById("elevator-display");
+  const title = document.getElementById("floor-title");
+  const desc = document.getElementById("floor-desc");
+  const link = document.getElementById("floor-link");
+  const view = document.getElementById("elevator-view");
+
+  const towerBtns = document.querySelectorAll(".tower-btn");
+  const backBtn = document.getElementById("btn-back-terminal");
+
+  // タワー選択
+  towerBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      if (isAnimating) return;
+      const towerId = btn.dataset.tower;
+      enterTower(towerId);
+    });
+  });
+
+  // ターミナルへ戻る
+  backBtn.addEventListener("click", () => {
+    if (isAnimating) return;
+    returnToTerminal();
+  });
+
+  function enterTower(towerId) {
+    isAnimating = true;
+    activeFloors = towerData[towerId];
+    currentFloor = 0;
+
+    // 1. 扉を閉める
+    frame.classList.remove("elevator-open");
+    
+    setTimeout(() => {
+      // 2. 裏でUI切り替え
+      terminalPanel.style.display = "none";
+      floorUi.style.display = "block";
+      updateFloorContent();
+      
+      // 3. 扉を開ける
+      setTimeout(() => {
+        frame.classList.add("elevator-open");
+        setTimeout(() => { isAnimating = false; }, 800);
+      }, 500);
+    }, 800);
+  }
+
+  function returnToTerminal() {
+    isAnimating = true;
+
+    // 1. 扉を閉める
+    frame.classList.remove("elevator-open");
+    
+    setTimeout(() => {
+      // 2. 裏でUI切り替え
+      activeFloors = null;
+      floorUi.style.display = "none";
+      terminalPanel.style.display = "flex";
+      
+      // 3. 扉を開ける
+      setTimeout(() => {
+        frame.classList.add("elevator-open");
+        setTimeout(() => { isAnimating = false; }, 800);
+      }, 500);
+    }, 800);
+  }
+
+  // マウスホイールでのフロア移動
+  elevatorSection.addEventListener("wheel", (e) => {
+    e.preventDefault(); // デフォルトのスクロールを止める
+    if (isAnimating || !activeFloors) return;
+
+    if (e.deltaY > 0 && currentFloor < activeFloors.length - 1) {
+      changeFloor(currentFloor + 1);
+    } else if (e.deltaY < 0 && currentFloor > 0) {
+      changeFloor(currentFloor - 1);
+    } else if (e.deltaY > 0 && currentFloor === activeFloors.length - 1) {
+      // 一番下でさらにスクロールしたら、通常のスクロール（下の図書館UI）へ流す
+      window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+    }
+  }, { passive: false });
+
+  function changeFloor(newFloor) {
+    isAnimating = true;
+    
+    // 1. 扉を閉める
+    frame.classList.remove("elevator-open");
+    
+    // 2. 扉が閉まった裏で内容を書き換える
+    setTimeout(() => {
+      currentFloor = newFloor;
+      updateFloorContent();
+      
+      // チンッという音の演出（視覚的）
+      display.style.color = "#fff";
+      display.style.backgroundColor = "#e74c3c";
+      setTimeout(() => {
+        display.style.color = "#e74c3c";
+        display.style.backgroundColor = "#000";
+      }, 300);
+
+      // 3. 扉を開ける
+      setTimeout(() => {
+        frame.classList.add("elevator-open");
+        setTimeout(() => { isAnimating = false; }, 800);
+      }, 500);
+      
+    }, 800);
+  }
+
+  function updateFloorContent() {
+    if (!activeFloors) return;
+    const data = activeFloors[currentFloor];
+    display.textContent = data.floor;
+    title.textContent = `${data.floor}: ${data.title}`;
+    desc.textContent = data.desc;
+    link.href = data.link;
+    view.style.backgroundImage = data.bg;
+    
+    if (data.floor === "1F" && data.title === "THE LIBRARY") {
+      link.textContent = "ENTER FLOOR (Scroll Down)";
+    } else {
+      link.textContent = "ENTER FLOOR";
+    }
+  }
+}

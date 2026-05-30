@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - OBSERVATORY</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/observatory.css">
+</head>
+<body class="observatory-theme">
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title" style="font-family: 'Space Mono', monospace; font-size: 1.2rem; color: #a29bfe;">CENTRAL_OBSERVATORY</h1>
+      <span class="lib-subtitle" style="font-family: 'Noto Serif JP', serif;">夢見ヶ丘中央図書館 宇宙情報局</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#constellation-section" id="nav-star">星図鑑</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <div class="mega-category">
+        <span class="mega-btn">PUBLIC ▼</span>
+        <div class="mega-dropdown">
+          <a href="index.html">Library</a>
+          <a href="music.html">Music</a>
+          <a href="art.html">Art</a>
+          <a href="museum.html">Museum</a>
+          <a href="cinema.html">Cinema</a>
+          <a href="aquarium.html">Aquarium</a>
+          <a href="observatory.html" class="active">Observatory</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">COMMERCIAL ▼</span>
+        <div class="mega-dropdown">
+          <a href="restaurant.html">Restaurant</a>
+          <a href="mall.html">Shopping Mall</a>
+          <a href="sports.html">Sports Shop</a>
+          <a href="arcade.html">Arcade</a>
+        </div>
+      </div>
+      <div class="mega-category">
+        <span class="mega-btn">SCHOOL ▼</span>
+        <div class="mega-dropdown">
+          <a href="school-es.html">Elementary</a>
+          <a href="school-jhs.html">Junior High</a>
+          <a href="school-hs.html">High School</a>
+          <a href="school-uni.html">University</a>
+          <a href="school-voc.html">Vocational</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero observatory-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Space Mono', monospace; font-size: 4rem; color: #dfe6e9; letter-spacing: 10px;">THE OBSERVATORY</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Serif JP', serif; font-size: 1.2rem; color: #b2bec3;">暗闇から星を繋ぎ、情報を紡ぎ出せ。</p>
+    </div>
+  </section>
+
+  <!-- 🌌 The Constellation Map -->
+  <section id="constellation-section" class="catalog-section" style="background-color: #000; padding: 0; margin: 0; overflow: hidden;">
+    
+    <div class="sky-container" id="sky-container">
+      <!-- 背景の星屑 -->
+      <div class="stardust"></div>
+      
+      <!-- 星と星を結ぶ線を描画するCanvas -->
+      <canvas id="constellation-canvas"></canvas>
+
+      <!-- クリック可能な星（情報アイテム） -->
+      <div class="stars-layer" id="stars-layer">
+        <!-- JSで星が配置されます -->
+      </div>
+    </div>
+    
+    <!-- 星をクリックした時に情報が表示されるパネル -->
+    <div class="star-info-panel" id="star-info-panel">
+      <button class="close-info" id="close-info">×</button>
+      <h3 id="info-title" style="font-family: 'Space Mono', monospace; color: #a29bfe; margin-bottom: 10px;">-</h3>
+      <div id="info-desc" style="font-family: 'Noto Serif JP', serif; color: #dfe6e9; font-size: 0.9rem; line-height: 1.6;">-</div>
+    </div>
+
+  </section>
+
+  <script src="js/observatory.js"></script>
+</body>
+</html>

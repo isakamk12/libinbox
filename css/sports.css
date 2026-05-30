@@ -1,0 +1,165 @@
+/* ==========================================================================
+   SPORTS THEME STYLES
+   ========================================================================== */
+
+/* Hero Section override */
+.sports-hero {
+  background: 
+    linear-gradient(135deg, rgba(230, 126, 34, 0.8), rgba(192, 57, 43, 0.9)),
+    url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&q=80') center/cover;
+  border-bottom: 5px solid #f1c40f;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  padding-bottom: 8rem;
+}
+
+/* 1. Dynamic Arena (物理演算エリア) */
+.physics-arena {
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  background-color: #111;
+  /* コートのライン風背景 */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
+  background-size: 50px 50px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 50px rgba(0,0,0,1);
+  border-bottom: 10px solid #e67e22;
+}
+
+.arena-title-overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.arena-title-overlay h2 {
+  font-family: 'Teko', sans-serif;
+  font-size: 15vw;
+  color: #fff;
+  line-height: 1;
+  margin: 0;
+}
+
+.arena-title-overlay p {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+/* スポーツギア（ボール） */
+.gear-item {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #e67e22, #d35400);
+  box-shadow: 
+    inset -10px -10px 20px rgba(0,0,0,0.5),
+    inset 10px 10px 20px rgba(255,255,255,0.4),
+    0 10px 20px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'Teko', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.1;
+  cursor: grab;
+  user-select: none;
+  z-index: 10;
+  /* jsでleft, top が設定される */
+}
+
+.gear-item:active {
+  cursor: grabbing;
+}
+
+/* ボールの種類（色） */
+.gear-basketball { background: radial-gradient(circle at 30% 30%, #e67e22, #d35400); border: 2px solid #000; }
+.gear-tennis { background: radial-gradient(circle at 30% 30%, #cddc39, #9e9d24); color: #222; }
+.gear-soccer { background: radial-gradient(circle at 30% 30%, #fff, #ccc); border: 3px dashed #333; color: #222; }
+.gear-bowling { background: radial-gradient(circle at 30% 30%, #8e44ad, #2c3e50); }
+
+/* 情報パネル */
+.gear-info-panel {
+  position: absolute;
+  top: 20px; right: 20px;
+  width: 300px;
+  background: #fff;
+  border-left: 5px solid #e67e22;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  transform: translateX(120%);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.gear-info-panel.active {
+  transform: translateX(0);
+}
+
+.gear-info-header {
+  background: #222;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gear-info-header h3 {
+  font-family: 'Teko', sans-serif;
+  font-size: 1.8rem;
+  margin: 0;
+  color: #f1c40f;
+}
+
+#close-gear {
+  background: none; border: none;
+  color: #fff; font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.gear-info-body {
+  padding: 20px;
+}
+
+.gear-stat {
+  font-family: 'Teko', sans-serif;
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.gear-info-body p {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.action-btn {
+  width: 100%;
+  margin-top: 15px;
+  background: #e67e22;
+  color: #fff;
+  border-radius: 0;
+  font-family: 'Teko', sans-serif;
+  font-size: 1.5rem;
+  padding: 10px;
+}
+.action-btn:hover {
+  background: #d35400;
+}
