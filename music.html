@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="音楽をテーマにしたホームページ演出のカタログサイト。">
+  <title class="lib-title">音楽カタログ - 架空の中央図書館</title>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/music.css">
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title">CENTRAL LIBRARY</h1>
+      <span class="lib-subtitle">夢見ヶ丘中央図書館 ポータル</span>
+    </div>
+    
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#record-section" id="nav-record">レコード</a></li>
+        <li><a href="#cassette-section" id="nav-cassette">カセット</a></li>
+        <li><a href="#cd-section" id="nav-cd">CD</a></li>
+      </ul>
+    </nav>
+
+    <div class="theme-switcher" aria-label="テーマ切り替え">
+      <a href="index.html" class="theme-btn">Library</a>
+      <a href="music.html" class="theme-btn active">Music</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home-hero">
+    <div class="hero-content">
+      <div class="ornament">
+        <span class="ornament-symbol" style="font-family: sans-serif;">♪</span>
+      </div>
+      <h2 id="hero-title">メロディに触れ、音と出会う。</h2>
+      <p id="hero-desc">レコードやカセットテープ、CDなど、音楽をテーマにした様々なUI演出のカタログです。カーソルを合わせると音が聴こえてきそうな動きを楽しんでください。</p>
+      
+      <div class="ornament">
+        <span class="ornament-symbol" style="font-family: sans-serif;">♪</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🎵 Section 1: Vinyl Record (レコード盤スライド演出) -->
+  <section id="record-section" class="catalog-section" style="border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 6rem;">
+    <div class="section-title">
+      <h2>1. Vinyl Record（レコード盤スライド演出）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        ホバーするとジャケットの中からレコード盤が滑り出し、ゆっくりと回転を始めます。
+      </p>
+    </div>
+
+    <div class="record-wrapper" id="record-wrapper">
+      <!-- JSで動的にレコードが生成されます -->
+    </div>
+  </section>
+
+  <!-- 📼 Section 2: Cassette Tape (カセットテープ3D回転) -->
+  <section id="cassette-section" class="catalog-section" style="background-color: var(--bg-parchment); border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 6rem; padding-top: 4rem;">
+    <div class="section-title">
+      <h2>2. Cassette Tape（カセットテープ3D回転）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        クリックするとカセットテープが3D空間で裏返り、B面が現れる演出です。
+      </p>
+    </div>
+    
+    <div class="cassette-wrapper" id="cassette-wrapper">
+      <!-- JSで動的にカセットが生成されます -->
+    </div>
+  </section>
+
+  <!-- 💿 Section 3: CD Player (CDプレイヤー開閉演出) -->
+  <section id="cd-section" class="catalog-section" style="background-color: #1a1a1a; color: #f0f0f0; border-bottom: 1px solid #333; padding-bottom: 6rem; padding-top: 4rem;">
+    <div class="section-title">
+      <h2 style="color: #e0d0b0;">3. CD Case（ジュエルケース開閉演出）</h2>
+      <p style="text-align: center; color: #a0a0a0; font-size: 0.9rem; margin-top: -10px;">
+        ホバーするとCDの透明なケースが開き、中からCDが浮かび上がります。
+      </p>
+    </div>
+    
+    <div class="cd-wrapper" id="cd-wrapper">
+      <!-- JSで動的にCDケースが生成されます -->
+    </div>
+  </section>
+
+  <!-- 📦 Section 4: The Digging Crate (ディグる箱) -->
+  <section id="crate-section" class="catalog-section" style="background-color: var(--bg-parchment-dark); border-bottom: 1px solid rgba(43, 24, 16, 0.15); padding-bottom: 8rem; padding-top: 4rem; overflow: hidden;">
+    <div class="section-title">
+      <h2>4. The Digging Crate（ディグる箱）</h2>
+      <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -10px;">
+        レコード屋の箱を漁る体験。ジャンルごとの箱にカーソルを乗せ、ホイール（または上下スワイプ）で手前へパタパタとめくります。
+      </p>
+    </div>
+    <div class="crate-container" id="crate-container">
+      <!-- JSで箱とアイテムが生成されます -->
+    </div>
+  </section>
+
+  <!-- 🎛️ Section 5: The DJ Mixer (ジャンルフェーダー) -->
+  <section id="mixer-section" class="catalog-section" style="background-color: #050505; color: #fff; padding-bottom: 12rem; padding-top: 4rem; position: relative;">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="color: #4CAF50;">5. The DJ Mixer（ジャンル・フェーダー）</h2>
+      <p style="text-align: center; color: #888; font-size: 0.9rem; margin-top: -10px;">
+        ミキサーのスライダーを上げると、そのジャンルのアイテムが空間にホログラムのように浮かび上がります。
+      </p>
+    </div>
+    
+    <div class="mixer-stage" id="mixer-stage">
+      <!-- 浮かび上がるアイテム群 -->
+    </div>
+    
+    <div class="mixer-console">
+      <div class="fader-group">
+        <label class="fader-label" style="color: #3498db; text-shadow: 0 0 5px #3498db;">JAZZ</label>
+        <input type="range" class="vertical-fader" id="fader-jazz" data-genre="Jazz" min="0" max="100" value="0">
+      </div>
+      <div class="fader-group">
+        <label class="fader-label" style="color: #e74c3c; text-shadow: 0 0 5px #e74c3c;">ROCK</label>
+        <input type="range" class="vertical-fader" id="fader-rock" data-genre="Rock" min="0" max="100" value="0">
+      </div>
+      <div class="fader-group">
+        <label class="fader-label" style="color: #f1c40f; text-shadow: 0 0 5px #f1c40f;">CLASSIC</label>
+        <input type="range" class="vertical-fader" id="fader-classic" data-genre="Classic" min="0" max="100" value="0">
+      </div>
+    </div>
+  </section>
+
+  <!-- 🌌 Section 6: Soundwave Orbit (波形と軌道) -->
+  <section id="orbit-section" class="catalog-section" style="background-color: #0a0a12; color: #fff; padding-bottom: 8rem; padding-top: 4rem; position: relative; overflow: hidden; height: 600px;">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="color: #9b59b6;">6. Soundwave Orbit（波形と軌道）</h2>
+      <p style="text-align: center; color: #888; font-size: 0.9rem; margin-top: -10px;">
+        流れるジャンルの軌道。軌道上にカーソルを合わせると、音の波紋と共にアイテムが実体化して展開されます。
+      </p>
+    </div>
+    <div class="orbit-container" id="music-orbit-container">
+      <!-- JSで軌道とアイテムが生成されます -->
+    </div>
+  </section>
+
+  <!-- 🌊 Section 7: The Equalizer Wave (イコライザー連動ポップアップ) -->
+  <section id="equalizer-section" class="catalog-section" style="background-color: #0d1117; color: #c9d1d9; padding-bottom: 10rem; padding-top: 4rem; position: relative; overflow: hidden; height: 500px;">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="color: #58a6ff;">7. The Equalizer Wave（イコライザー・ポップアップ）</h2>
+      <p style="text-align: center; color: #8b949e; font-size: 0.9rem; margin-top: -10px;">
+        マウスを左右に動かすと波形が波打ち、波のピーク（頂点）に達したジャンルのアイテムが空中に弾け飛びます。
+      </p>
+    </div>
+    <div class="eq-container" id="eq-container">
+      <!-- JSでイコライザーバーが大量に生成されます -->
+    </div>
+  </section>
+
+  <!-- 🪐 Section 8: The Turntable Gravity (ターンテーブルの重力) -->
+  <section id="turntable-section" class="catalog-section" style="background-color: #161b22; color: #fff; padding-bottom: 12rem; padding-top: 4rem; position: relative; overflow: hidden; height: 700px;">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="color: #f0883e;">8. The Turntable Gravity（ターンテーブルの重力）</h2>
+      <p style="text-align: center; color: #8b949e; font-size: 0.9rem; margin-top: -10px;">
+        画面端の「ジャンルピン（レコード針）」をドラッグして、中央のターンテーブルに落としてみてください。
+      </p>
+    </div>
+    
+    <div class="tt-universe" id="tt-universe">
+      <!-- 中央の巨大ターンテーブル -->
+      <div class="tt-platter" id="tt-platter">
+        <div class="tt-label">DROP PIN HERE</div>
+      </div>
+      <!-- ドラッグ可能なジャンルピン -->
+      <div class="tt-pins-container" id="tt-pins">
+        <div class="tt-pin" draggable="true" data-genre="Jazz" style="background-color: #3498db;">JAZZ</div>
+        <div class="tt-pin" draggable="true" data-genre="Rock" style="background-color: #e74c3c;">ROCK</div>
+        <div class="tt-pin" draggable="true" data-genre="Classic" style="background-color: #f1c40f;">CLASSIC</div>
+      </div>
+      <!-- 周囲を浮遊するアイテム群（JSで生成） -->
+      <div id="tt-items-layer"></div>
+    </div>
+  </section>
+
+  <!-- 📼 Section 9: The Neon Tape Deck (カセット挿入プロジェクション) -->
+  <section id="tapedeck-section" class="catalog-section" style="background-color: #010409; color: #fff; padding-bottom: 12rem; padding-top: 4rem; position: relative; overflow: hidden; height: 700px;">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="color: #ff7b72; text-shadow: 0 0 10px #ff7b72;">9. The Neon Tape Deck（ネオンカセットデッキ）</h2>
+      <p style="text-align: center; color: #8b949e; font-size: 0.9rem; margin-top: -10px;">
+        下のカセットをドラッグし、中央の光るデッキのスロットにガシャコン！と挿入してプロジェクションを展開します。
+      </p>
+    </div>
+    
+    <div class="deck-stage">
+      <!-- ホログラムプロジェクション領域 -->
+      <div class="deck-hologram-area" id="deck-hologram-area"></div>
+      
+      <!-- 巨大デッキ本体 -->
+      <div class="deck-machine">
+        <div class="deck-slot" id="deck-slot-1">SLOT 1</div>
+        <div class="deck-slot" id="deck-slot-2">SLOT 2</div>
+      </div>
+      
+      <!-- 挿入用カセット -->
+      <div class="deck-tapes-container">
+        <div class="deck-tape-item" draggable="true" data-genre="Jazz" style="border-top: 15px solid #3498db;">JAZZ MIX</div>
+        <div class="deck-tape-item" draggable="true" data-genre="Rock" style="border-top: 15px solid #e74c3c;">ROCK TAPE</div>
+        <div class="deck-tape-item" draggable="true" data-genre="Classic" style="border-top: 15px solid #f1c40f;">CLASSIC VOL.1</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer id="main-footer">
+    <div class="copyright">
+      &copy; 2026 <span class="lib-title">Central Library</span>. Music Theme Extended. All Rights Reserved.
+    </div>
+  </footer>
+
+  <!-- JS Scripts -->
+  <script src="js/music.js"></script>
+</body>
+</html>

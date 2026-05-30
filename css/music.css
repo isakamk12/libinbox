@@ -1,0 +1,806 @@
+/* ==========================================================================
+   MUSIC THEME STYLES
+   ========================================================================== */
+
+/* 1. Vinyl Record (レコード盤スライド演出) */
+.record-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.record-item {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+}
+
+.record-jacket {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  border-radius: 4px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  z-index: 2;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.record-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.record-title {
+  position: absolute;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 0 10px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+}
+
+.record-vinyl {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 240px;
+  height: 240px;
+  background-color: #111;
+  border-radius: 50%;
+  z-index: 1;
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: inset 0 0 0 10px #222, inset 0 0 20px rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* レコードの溝の表現 */
+.record-vinyl::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-sizing: border-box;
+}
+
+.record-vinyl::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-sizing: border-box;
+}
+
+.record-label {
+  width: 80px;
+  height: 80px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5rem;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+}
+
+.record-hole {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #1a1a1a;
+  border-radius: 50%;
+}
+
+/* ホバー時のアクション */
+.record-item:hover .record-jacket {
+  transform: translateX(-20px) translateY(10px) rotate(-2deg);
+  box-shadow: 15px 15px 25px rgba(0,0,0,0.4);
+}
+
+.record-item:hover .record-vinyl {
+  transform: translateX(100px) rotate(360deg);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+/* 2. Cassette Tape (カセットテープ3D回転) */
+.cassette-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+  perspective: 1000px;
+}
+
+.cassette-item {
+  width: 300px;
+  height: 190px;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cassette-item.flipped {
+  transform: rotateY(180deg);
+}
+
+.cassette-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  background-color: #2c2c2c;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3), inset 0 0 0 4px #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.cassette-face-back {
+  transform: rotateY(180deg);
+  background-color: #383838;
+}
+
+.cassette-label {
+  width: 90%;
+  height: 100px;
+  background-color: #f4e8c1;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.cassette-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  width: 80%;
+  text-align: center;
+}
+
+.cassette-window {
+  width: 150px;
+  height: 40px;
+  background-color: #1a1a1a;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+.cassette-reel {
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cassette-reel::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background-color: #1a1a1a;
+  border-radius: 50%;
+}
+
+.cassette-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.cassette-item.flipped:hover {
+  transform: rotateY(180deg) scale(1.05);
+}
+
+/* 3. CD Case (ジュエルケース開閉演出) */
+.cd-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+  padding: 2rem;
+  perspective: 1200px;
+}
+
+.cd-item {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transform: rotateX(20deg) rotateY(-10deg);
+  transition: transform 0.5s ease;
+}
+
+.cd-case-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  border-radius: 4px;
+  border-left: 15px solid #111;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.cd-disc {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, #ddd 10%, #fff 30%, #bbb 50%, #eee 70%, #999 100%);
+  border-radius: 50%;
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+
+.cd-disc-hole {
+  width: 30px;
+  height: 30px;
+  background-color: #222;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.cd-case-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  z-index: 3;
+  transform-origin: left center;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-case-cover {
+  width: 90%;
+  height: 90%;
+  background-color: #333;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-display);
+  text-align: center;
+}
+
+/* ホバー時のアクション */
+.cd-item:hover {
+  transform: rotateX(0deg) rotateY(0deg);
+}
+
+.cd-item:hover .cd-case-front {
+  transform: rotateY(-110deg);
+}
+
+.cd-item:hover .cd-disc {
+  transform: translateY(-50px) rotate(180deg);
+}
+
+/* ==========================================================================
+   INNOVATIVE UI COMPONENTS
+   ========================================================================== */
+
+/* 4. The Digging Crate (ディグる箱) */
+.crate-container {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  padding: 4rem 2rem;
+  perspective: 1500px;
+  flex-wrap: wrap;
+}
+
+.crate-box {
+  width: 300px;
+  height: 250px;
+  background-color: #5c4033;
+  border: 4px solid #3e2723;
+  border-top: none;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 -20px 40px rgba(0,0,0,0.8);
+  transform-style: preserve-3d;
+  transform: rotateX(15deg) rotateY(-10deg);
+  transition: transform 0.5s ease;
+}
+
+.crate-box:hover {
+  transform: rotateX(10deg) rotateY(-5deg) scale(1.05);
+}
+
+.crate-label {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f4e8c1;
+  color: #333;
+  padding: 5px 20px;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+.crate-items {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.crate-item {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 260px;
+  background-color: #222;
+  border-radius: 5px;
+  transform-origin: bottom center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.4);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.crate-item-cover {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* 5. The DJ Mixer (ジャンルフェーダー) */
+.mixer-stage {
+  height: 400px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.mixer-console {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  background: linear-gradient(to bottom, #2a2a2a, #111);
+  padding: 2rem 4rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 2px 5px rgba(255,255,255,0.1);
+  width: max-content;
+  margin: 0 auto;
+  border: 1px solid #444;
+}
+
+.fader-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fader-label {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.vertical-fader {
+  -webkit-appearance: slider-vertical;
+  width: 20px;
+  height: 150px;
+  background: #000;
+  outline: none;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,1);
+}
+
+.vertical-fader::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(to bottom, #ccc, #777);
+  border: 1px solid #333;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+}
+
+.hologram-item {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  opacity: 0;
+  transform: translateY(150px) scale(0.5);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  font-family: var(--font-display);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+  border: 2px solid rgba(255,255,255,0.2);
+}
+
+/* 6. Soundwave Orbit (波形と軌道) */
+.orbit-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  transition: border-color 0.3s ease;
+  pointer-events: none;
+}
+
+.orbit-node {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px var(--color);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.3s ease;
+}
+
+.orbit-node:hover {
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+.orbit-item-display {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: #222;
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+  border: 2px solid var(--color);
+}
+
+/* ==========================================================================
+   INNOVATIVE UI COMPONENTS VOL.2
+   ========================================================================== */
+
+/* 7. The Equalizer Wave */
+.eq-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  height: 300px;
+  width: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.eq-bar {
+  width: 30px;
+  background-color: #333;
+  border-radius: 4px 4px 0 0;
+  transition: height 0.1s ease, background-color 0.3s ease;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.eq-popup-item {
+  position: absolute;
+  top: 0;
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+  border-radius: 5px;
+  opacity: 0;
+  transform: translateY(0) scale(0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+}
+
+.eq-bar.active .eq-popup-item {
+  opacity: 1;
+  transform: translateY(-80px) scale(1.2);
+}
+
+/* 8. The Turntable Gravity */
+.tt-universe {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tt-platter {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #333 10%, #111 90%);
+  border: 10px solid #222;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+  transition: all 0.5s ease;
+}
+
+.tt-platter.drag-over {
+  box-shadow: 0 0 50px rgba(52, 152, 219, 0.8), inset 0 0 30px rgba(52, 152, 219, 0.5);
+  border-color: #3498db;
+}
+
+.tt-label {
+  color: #555;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  pointer-events: none;
+}
+
+.tt-pins-container {
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 10;
+}
+
+.tt-pin {
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: bold;
+  cursor: grab;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+  user-select: none;
+}
+
+.tt-pin:active {
+  cursor: grabbing;
+}
+
+#tt-items-layer {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.tt-floating-item {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-color: #222;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-family: var(--font-display);
+  transition: all 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* 9. The Neon Tape Deck */
+.deck-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.deck-hologram-area {
+  width: 80%;
+  height: 250px;
+  background: radial-gradient(ellipse at bottom, rgba(52, 152, 219, 0.1) 0%, transparent 70%);
+  border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.deck-machine {
+  width: 600px;
+  height: 150px;
+  background-color: #111;
+  border: 2px solid #333;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 5px 10px rgba(255,255,255,0.05);
+}
+
+.deck-slot {
+  width: 180px;
+  height: 100px;
+  background-color: #050505;
+  border: 2px dashed #444;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-family: var(--font-display);
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.deck-slot.drag-over {
+  border-color: #ff7b72;
+  background-color: rgba(255, 123, 114, 0.1);
+  color: #ff7b72;
+  text-shadow: 0 0 10px #ff7b72;
+}
+
+.deck-slot.filled {
+  border: 2px solid #ff7b72;
+  box-shadow: 0 0 20px rgba(255, 123, 114, 0.3), inset 0 0 15px rgba(255, 123, 114, 0.2);
+  color: transparent;
+}
+
+.deck-tapes-container {
+  display: flex;
+  gap: 20px;
+}
+
+.deck-tape-item {
+  width: 140px;
+  height: 80px;
+  background-color: #222;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  cursor: grab;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.5);
+  user-select: none;
+}
+
+.deck-tape-item:active {
+  cursor: grabbing;
+}
+
+.deck-holo-item {
+  width: 150px;
+  height: 150px;
+  background-color: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-display);
+  text-shadow: 0 0 5px rgba(255,255,255,0.8);
+  box-shadow: 0 0 20px rgba(255,255,255,0.1);
+  animation: holo-float 3s ease-in-out infinite alternate;
+}
+
+@keyframes holo-float {
+  0% { transform: translateY(0); opacity: 0.8; }
+  100% { transform: translateY(-10px); opacity: 1; }
+}

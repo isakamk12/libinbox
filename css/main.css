@@ -73,6 +73,39 @@ header {
   width: 100%;
 }
 
+/* Theme Switcher */
+.theme-switcher {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.25rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-btn {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 0.4rem 1.2rem;
+  border-radius: 15px;
+  transition: var(--transition-fast);
+  opacity: 0.7;
+}
+
+.theme-btn:hover {
+  opacity: 1;
+}
+
+.theme-btn.active {
+  background-color: var(--accent-color);
+  color: var(--primary-dark);
+  opacity: 1;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
 /* Hero Section */
 .hero {
   background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
