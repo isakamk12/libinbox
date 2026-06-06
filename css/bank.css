@@ -1,0 +1,27 @@
+.bank-theme {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+.bank-hero {
+  background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1557992260-ec58e38d363c?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f1c40f;
+}
+
+.bank-container {
+  position: relative;
+  min-height: 500px;
+  margin: 2rem auto;
+  max-width: 800px;
+  background: linear-gradient(135deg, #34495e, #2c3e50);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(44, 62, 80, 0.4);
+  perspective: 1000px;
+}

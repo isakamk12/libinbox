@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - GRAND THEATER</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/theater.css">
+</head>
+<body class="theater-theme">
+
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title">CENTRAL LIBRARY</h1>
+      <span class="lib-subtitle">夢見ヶ丘中央図書館 ポータル</span>
+    </div>
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#stage-section" id="nav-theater">The Center Stage</a></li>
+      </ul>
+    </nav>
+    <div id="theme-switcher-container"></div>
+  </header>
+
+  <section class="hero theater-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Cinzel', serif; font-size: 4rem; letter-spacing: 5px;">GRAND THEATER</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Serif JP', serif;">幕が上がり、物語が始まる</p>
+    </div>
+  </section>
+
+  <section id="stage-section" class="catalog-section">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="font-family: 'Cinzel', serif;">The Center Stage</h2>
+      <p style="text-align: center; font-family: 'Noto Serif JP', serif;">スポットライトを浴びて現れる演目たち。</p>
+    </div>
+    <div class="theater-container" id="theater-container">
+      <!-- 固有の演出領域 -->
+    </div>
+  </section>
+
+  <footer id="main-footer">
+    <div class="copyright">
+      <p>&copy; 2026 Central Library - GRAND THEATER Division. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/theater.js"></script>
+  <script src="js/components.js"></script>
+</body>
+</html>

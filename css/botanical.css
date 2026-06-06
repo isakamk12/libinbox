@@ -1,0 +1,46 @@
+.botanical-theme {
+  background-color: #e8f5e9;
+  color: #1b5e20;
+}
+
+.botanical-hero {
+  background: linear-gradient(rgba(27, 94, 32, 0.7), rgba(27, 94, 32, 0.4)), url('https://images.unsplash.com/photo-1497250681960-ef046c08a56e?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #f1f8e9;
+}
+
+.botanical-container {
+  position: relative;
+  min-height: 600px;
+  margin: -4rem auto 4rem;
+  max-width: 1200px;
+  background: linear-gradient(135deg, #a5d6a7, #c8e6c9);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(27, 94, 32, 0.2);
+  overflow: hidden;
+}
+
+.falling-leaf {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #4caf50;
+  border-radius: 0 10px 0 10px;
+  opacity: 0.6;
+  animation: fall linear infinite;
+  box-shadow: inset -2px -2px 4px rgba(0,0,0,0.2);
+}
+
+@keyframes fall {
+  0% { top: -10%; transform: rotate(0deg) translateX(0); opacity: 0; }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% { top: 110%; transform: rotate(360deg) translateX(50px); opacity: 0; }
+}

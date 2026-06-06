@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CENTRAL LIBRARY - CAFE & BAKERY</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/cafe.css">
+</head>
+<body class="cafe-theme">
+
+  <header id="main-header">
+    <div class="logo">
+      <h1 class="lib-title">CENTRAL LIBRARY</h1>
+      <span class="lib-subtitle">夢見ヶ丘中央図書館 ポータル</span>
+    </div>
+    <nav aria-label="メインナビゲーション">
+      <ul class="nav-links">
+        <li><a href="#menu-section" id="nav-cafe">Today's Menu</a></li>
+      </ul>
+    </nav>
+    <div id="theme-switcher-container"></div>
+  </header>
+
+  <section class="hero cafe-hero" id="home-hero">
+    <div class="hero-content">
+      <h2 class="hero-title" style="font-family: 'Caveat', serif; font-size: 4rem; letter-spacing: 5px;">CAFE & BAKERY</h2>
+      <p class="hero-subtitle" style="font-family: 'Noto Serif JP', serif;">温かいコーヒーと甘い香り</p>
+    </div>
+  </section>
+
+  <section id="menu-section" class="catalog-section">
+    <div class="section-title" style="position: relative; z-index: 10;">
+      <h2 style="font-family: 'Caveat', serif;">Today's Menu</h2>
+      <p style="text-align: center; font-family: 'Noto Serif JP', serif;">本日の焼き立てメニュー。</p>
+    </div>
+    <div class="cafe-container" id="cafe-container">
+      <!-- 固有の演出領域 -->
+    </div>
+  </section>
+
+  <footer id="main-footer">
+    <div class="copyright">
+      <p>&copy; 2026 Central Library - CAFE & BAKERY Division. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/cafe.js"></script>
+  <script src="js/components.js"></script>
+</body>
+</html>
