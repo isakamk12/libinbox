@@ -1114,12 +1114,67 @@ function initElevator() {
       { floor: "3F", title: "HIGH SCHOOL", desc: "ロッカーとスマートフォン。青春の交差点。", link: "school-hs.html", bg: "url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80')" },
       { floor: "4F", title: "UNIVERSITY", desc: "巨大な講堂とキャンパスマップ。", link: "school-uni.html", bg: "url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80')" },
       { floor: "5F", title: "VOCATIONAL SCHOOL", desc: "専門職のアトリエと機材の数々。", link: "school-voc.html", bg: "url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80')" }
+    ],
+    infrastructure: [
+      { floor: "1F", title: "TERMINAL STATION", desc: "都市の玄関口、行き先を告げるアナウンスが響く。", link: "station.html", bg: "url('https://images.unsplash.com/photo-1513687258385-f5da17132890?auto=format&fit=crop&q=80')" },
+      { floor: "2F", title: "POWER PLANT", desc: "エネルギーの供給源。脈打つ光のケーブル。", link: "powerplant.html", bg: "url('https://images.unsplash.com/photo-1542382121-65a25b1b4b1a?auto=format&fit=crop&q=80')" },
+      { floor: "3F", title: "WATER CONTROL", desc: "澄み切った水流の音と、巨大な浄水パイプライン。", link: "water.html", bg: "url('https://images.unsplash.com/photo-1582212351290-7f2e1cf4a0b2?auto=format&fit=crop&q=80')" },
+      { floor: "4F", title: "SPACEPORT", desc: "軌道エレベーターの発着場。星々の瞬き。", link: "spaceport.html", bg: "url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&q=80')" }
+    ],
+    medical: [
+      { floor: "1F", title: "GENERAL HOSPITAL", desc: "清潔な白とブルーの空間。癒やしと治療の拠点。", link: "hospital.html", bg: "url('https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80')" },
+      { floor: "2F", title: "SPA & HOT SPRINGS", desc: "温かな湯気と水のせせらぎ。至福のリラックス空間。", link: "spa.html", bg: "url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&q=80')" }
+    ],
+    research: [
+      { floor: "1F", title: "SPACE CENTER", desc: "衛星軌道のデータが流れる、宇宙への窓。", link: "spacecenter.html", bg: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80')" },
+      { floor: "2F", title: "AI CORE", desc: "マトリックスのように流れる緑の文字列、計算の深淵。", link: "aicore.html", bg: "url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80')" }
+    ],
+    residential: [
+      { floor: "1F", title: "CAPSULE HOTEL", desc: "狭くて居心地のいい、サイバーパンクな宿泊ポッド。", link: "capsule.html", bg: "url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&q=80')" },
+      { floor: "2F", title: "LUXURY HOTEL", desc: "黒とゴールドが彩る、VIPのための最高級スイート。", link: "luxury.html", bg: "url('https://images.unsplash.com/photo-1542314831-c6a420325142?auto=format&fit=crop&q=80')" }
+    ],
+    sky: [
+      { floor: "TOP", title: "SKY LOUNGE", desc: "すべての施設を巡った者だけが到達できる、天空の特等席。", link: "skylounge.html", bg: "url('https://images.unsplash.com/photo-1499092346589-b9b6be3e94b2?auto=format&fit=crop&q=80')" }
+    ],
+    underworld: [
+      { floor: "B99F", title: "THE UNDERWORLD", desc: "電子の海に沈んだブラックマーケット。", link: "underworld.html", bg: "url('https://images.unsplash.com/photo-1605806616949-1e87b487cb2a?auto=format&fit=crop&q=80')" }
     ]
   };
 
   let activeFloors = null;
   let currentFloor = 0;
   let isAnimating = false;
+
+  // Day / Night Cycle
+  const hour = new Date().getHours();
+  if (hour >= 18 || hour < 6) {
+    document.body.classList.add("theme-night");
+  }
+
+  // Passport tracking
+  const totalRegularFloors = 26;
+  let visitedFloors = JSON.parse(localStorage.getItem('libinbox_visited') || '[]');
+  
+  function updatePassport() {
+    const counter = document.getElementById("visit-counter");
+    if (counter) counter.textContent = `${visitedFloors.length} / ${totalRegularFloors}`;
+    if (visitedFloors.length >= totalRegularFloors) {
+      const skyBtn = document.getElementById("btn-sky-lounge");
+      if (skyBtn) skyBtn.style.display = "block";
+    }
+  }
+  updatePassport();
+
+  // Hidden Keyboard Command
+  let secretBuffer = "";
+  document.addEventListener("keydown", (e) => {
+    secretBuffer += e.key.toLowerCase();
+    if (secretBuffer.length > 10) secretBuffer = secretBuffer.slice(-10);
+    if (secretBuffer.endsWith("under")) {
+      if (!isAnimating) enterTower("underworld");
+      secretBuffer = "";
+    }
+  });
 
   const frame = document.querySelector(".elevator-frame");
   const terminalPanel = document.getElementById("tower-selection");
@@ -1162,11 +1217,14 @@ function initElevator() {
       terminalPanel.style.display = "none";
       floorUi.style.display = "block";
       updateFloorContent();
-      
-      // 3. 扉を開ける
+      // 3. 扉を開ける (移動エフェクト追加)
       setTimeout(() => {
-        frame.classList.add("elevator-open");
-        setTimeout(() => { isAnimating = false; }, 800);
+        frame.classList.add("elevator-moving");
+        setTimeout(() => {
+          frame.classList.remove("elevator-moving");
+          frame.classList.add("elevator-open");
+          setTimeout(() => { isAnimating = false; }, 800);
+        }, 300);
       }, 500);
     }, 800);
   }
@@ -1182,11 +1240,14 @@ function initElevator() {
       activeFloors = null;
       floorUi.style.display = "none";
       terminalPanel.style.display = "flex";
-      
       // 3. 扉を開ける
       setTimeout(() => {
-        frame.classList.add("elevator-open");
-        setTimeout(() => { isAnimating = false; }, 800);
+        frame.classList.add("elevator-moving");
+        setTimeout(() => {
+          frame.classList.remove("elevator-moving");
+          frame.classList.add("elevator-open");
+          setTimeout(() => { isAnimating = false; }, 800);
+        }, 300);
       }, 500);
     }, 800);
   }
@@ -1224,11 +1285,14 @@ function initElevator() {
         display.style.color = "#e74c3c";
         display.style.backgroundColor = "#000";
       }, 300);
-
       // 3. 扉を開ける
       setTimeout(() => {
-        frame.classList.add("elevator-open");
-        setTimeout(() => { isAnimating = false; }, 800);
+        frame.classList.add("elevator-moving");
+        setTimeout(() => {
+          frame.classList.remove("elevator-moving");
+          frame.classList.add("elevator-open");
+          setTimeout(() => { isAnimating = false; }, 800);
+        }, 300);
       }, 500);
       
     }, 800);
@@ -1242,6 +1306,16 @@ function initElevator() {
     desc.textContent = data.desc;
     link.href = data.link;
     view.style.backgroundImage = data.bg;
+    
+    // Visit Tracking
+    if (activeFloors !== towerData.sky && activeFloors !== towerData.underworld) {
+      const currentId = data.title;
+      if (!visitedFloors.includes(currentId)) {
+        visitedFloors.push(currentId);
+        localStorage.setItem('libinbox_visited', JSON.stringify(visitedFloors));
+        updatePassport();
+      }
+    }
     
     if (data.floor === "1F" && data.title === "THE LIBRARY") {
       link.textContent = "ENTER FLOOR (Scroll Down)";

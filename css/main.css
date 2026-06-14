@@ -668,7 +668,10 @@ footer {
 
 .tower-options {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
+  max-width: 900px;
 }
 
 .tower-btn {
@@ -683,21 +686,51 @@ footer {
   transition: all 0.3s;
   text-align: center;
   box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  min-width: 220px;
 }
 
 .tower-btn small {
   display: block;
   font-size: 0.8rem;
-  color: #aaa;
-  margin-top: 10px;
-  font-family: var(--font-serif-jp);
+  margin-top: 0.5rem;
+  opacity: 0.7;
 }
 
-.tower-btn:hover {
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.1);
+/* 各タワー固有のホバーエフェクト */
+.tower-btn[data-tower="public"]:hover {
+  border-color: #3498db;
+  box-shadow: 0 0 20px rgba(52, 152, 219, 0.6);
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(255,255,255,0.2);
+}
+.tower-btn[data-tower="commercial"]:hover {
+  border-color: #f1c40f;
+  box-shadow: 0 0 20px rgba(241, 196, 15, 0.6);
+  transform: translateY(-5px);
+}
+.tower-btn[data-tower="school"]:hover {
+  border-color: #2ecc71;
+  box-shadow: 0 0 20px rgba(46, 204, 113, 0.6);
+  transform: translateY(-5px);
+}
+.tower-btn[data-tower="infrastructure"]:hover {
+  border-color: #e67e22;
+  box-shadow: 0 0 20px rgba(230, 126, 34, 0.6);
+  transform: translateY(-5px);
+}
+.tower-btn[data-tower="medical"]:hover {
+  border-color: #1abc9c;
+  box-shadow: 0 0 20px rgba(26, 188, 156, 0.6);
+  transform: translateY(-5px);
+}
+.tower-btn[data-tower="research"]:hover {
+  border-color: #9b59b6;
+  box-shadow: 0 0 20px rgba(155, 89, 182, 0.6);
+  transform: translateY(-5px);
+}
+.tower-btn[data-tower="residential"]:hover {
+  border-color: #e74c3c;
+  box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+  transform: translateY(-5px);
 }
 
 .elevator-header {
@@ -815,4 +848,81 @@ footer {
 }
 .elevator-open .door-right {
   transform: translateX(100%);
+}
+
+/* ==========================================================================
+   NIGHT MODE & PASSPORT UI & ELEVATOR EFFECTS
+   ========================================================================== */
+
+/* Night Mode Theme */
+body.theme-night {
+  --bg-color: #050505;
+  --bg-parchment: #111;
+  --bg-parchment-dark: #000;
+  --text-main: #e0e0e0;
+  --text-muted: #888;
+  --border-color: #333;
+}
+
+body.theme-night .tower-selection-panel {
+  background: radial-gradient(circle at center, #1a1a2e 0%, #000 70%);
+}
+
+body.theme-night .terminal-title {
+  color: #0ff;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+}
+
+body.theme-night .tower-btn {
+  border-color: #444;
+  background: rgba(0,0,0,0.5);
+}
+
+/* Passport UI */
+.passport-ui {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #aaa;
+  font-family: monospace;
+  text-align: right;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 15px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#visit-counter {
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 5px #fff;
+}
+
+/* Hidden Tower Button */
+.hidden-tower {
+  display: none; /* JS will change this to block when unlocked */
+  border-color: #f1c40f !important;
+  color: #f1c40f !important;
+  text-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.3) !important;
+}
+.hidden-tower:hover {
+  background: rgba(241, 196, 15, 0.2);
+  box-shadow: 0 0 25px rgba(241, 196, 15, 0.8) !important;
+}
+
+/* Elevator Moving Shake Animation */
+@keyframes elevator-shake {
+  0% { transform: translate(0, 0) scale(1.02); }
+  20% { transform: translate(-1px, 2px) scale(1.02); }
+  40% { transform: translate(1px, -2px) scale(1.02); }
+  60% { transform: translate(-2px, 1px) scale(1.02); }
+  80% { transform: translate(2px, -1px) scale(1.02); }
+  100% { transform: translate(0, 0) scale(1.02); }
+}
+
+.elevator-moving {
+  animation: elevator-shake 0.3s ease-in-out infinite;
 }

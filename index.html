@@ -57,12 +57,21 @@
     
     <div class="elevator-frame elevator-open" id="elevator-frame">
       <!-- ターミナル（タワー選択）UI -->
-      <div id="tower-selection" class="tower-selection-panel">
+      <div id="tower-selection" class="tower-selection-panel" style="position: relative;">
+        <div id="passport-ui" class="passport-ui">
+          <div>VISIT HISTORY</div>
+          <div id="visit-counter">0 / ?</div>
+        </div>
         <h2 class="terminal-title">SELECT DESTINATION TOWER</h2>
         <div class="tower-options">
           <button class="tower-btn" data-tower="public">PUBLIC TOWER<br><small>公共施設</small></button>
           <button class="tower-btn" data-tower="commercial">COMMERCIAL TOWER<br><small>商業施設</small></button>
           <button class="tower-btn" data-tower="school">SCHOOL TOWER<br><small>教育機関</small></button>
+          <button class="tower-btn" data-tower="infrastructure">INFRASTRUCTURE TOWER<br><small>インフラ施設</small></button>
+          <button class="tower-btn" data-tower="medical">MEDICAL TOWER<br><small>医療・癒やし</small></button>
+          <button class="tower-btn" data-tower="research">RESEARCH TOWER<br><small>研究・開発</small></button>
+          <button class="tower-btn" data-tower="residential">RESIDENTIAL TOWER<br><small>居住・宿泊</small></button>
+          <button class="tower-btn hidden-tower" id="btn-sky-lounge" data-tower="sky">SKY TOWER<br><small>空中庭園 (VIP)</small></button>
         </div>
       </div>
 
